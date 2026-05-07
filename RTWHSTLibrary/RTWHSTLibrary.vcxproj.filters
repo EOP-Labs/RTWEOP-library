@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="include\ImGui">
+      <UniqueIdentifier>{3f1cac02-6a44-4aea-9887-87047181e960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\differentFunctions">
+      <UniqueIdentifier>{b099228a-efd9-49dd-9f7a-0e6010b2a684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\memory">
+      <UniqueIdentifier>{c62440c8-64cf-42c1-90d7-b501b978a6a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\memory\events">
+      <UniqueIdentifier>{49125bff-6ec4-4378-9738-98e99818dbad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\memory\helperFunctions">
+      <UniqueIdentifier>{23ae7bac-77e3-432b-899e-dbbaca26ca99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\memory\hotSeat">
+      <UniqueIdentifier>{cf1a267a-2667-46d9-a8b0-af6c32485464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\memory\limits">
+      <UniqueIdentifier>{a10076e7-f0a7-4e88-9833-c8d793a4d68d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx9.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="differentFunctions\dm_assert.h">
+      <Filter>source\differentFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="differentFunctions\screenshoter.h">
+      <Filter>source\differentFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="differentFunctions\stringThings.h">
+      <Filter>source\differentFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\events\monitor_event.h">
+      <Filter>source\memory\events</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\events\new_event.h">
+      <Filter>source\memory\events</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\gameStructures.h">
+      <Filter>source\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\memoryWork.h">
+      <Filter>source\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Impl.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_notify.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\ImFileDialog.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\stb_image.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\textures.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\helper_functions.h">
+      <Filter>source\memory\helperFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\hotSeat\createBattle.h">
+      <Filter>source\memory\hotSeat</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\hotSeat\createBattleResult.h">
+      <Filter>source\memory\hotSeat</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\hotSeat\hotSeatCampaign.h">
+      <Filter>source\memory\hotSeat</Filter>
+    </ClInclude>
+    <ClInclude Include="include\miniz\miniz.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_stdlib.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\offsets.h">
+      <Filter>source\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="differentFunctions\encryption.h">
+      <Filter>source\differentFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="eopUnits.h">
+      <Filter>source\memory\limits</Filter>
+    </ClInclude>
+    <ClInclude Include="tacticalMapViewer.h">
+      <Filter>source\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="eopSettlements.h">
+      <Filter>source\memory\limits</Filter>
+    </ClInclude>
+    <ClInclude Include="differentFunctions\log.h">
+      <Filter>source\differentFunctions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawing.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\backends\imgui_impl_dx9.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\backends\imgui_impl_win32.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="differentFunctions\dm_assert.cpp">
+      <Filter>source\differentFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="differentFunctions\screenshoter.cpp">
+      <Filter>source\differentFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="differentFunctions\stringThings.cpp">
+      <Filter>source\differentFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\events\monitor_event.cpp">
+      <Filter>source\memory\events</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\events\new_event.cpp">
+      <Filter>source\memory\events</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memoryWork.cpp">
+      <Filter>source\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\ImFileDialog.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\textures.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="mainDraw.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\helper_functions.cpp">
+      <Filter>source\memory\helperFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\hotSeat\createBattle.cpp">
+      <Filter>source\memory\hotSeat</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\hotSeat\createBattleResult.cpp">
+      <Filter>source\memory\hotSeat</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\hotSeat\hotSeatCampaign.cpp">
+      <Filter>source\memory\hotSeat</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\gameStructures.cpp">
+      <Filter>source\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="include\miniz\miniz.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_stdlib.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\offsets.cpp">
+      <Filter>source\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="differentFunctions\encryption.cpp">
+      <Filter>source\differentFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="eopUnits.cpp">
+      <Filter>source\memory\limits</Filter>
+    </ClCompile>
+    <ClCompile Include="tacticalMapViewer.cpp">
+      <Filter>source\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="eopSettlements.cpp">
+      <Filter>source\memory\limits</Filter>
+    </ClCompile>
+    <ClCompile Include="differentFunctions\log.cpp">
+      <Filter>source\differentFunctions</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

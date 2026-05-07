@@ -1,0 +1,11 @@
+{
+    "ancillaryLimit": 16,
+    "debugDll": false,
+    "debugExe": false,
+    "gameVersion": 1,
+    "hideLauncher": false,
+    "language": "RU",
+    "logLevel": 4,
+    "mainHotSeat": "Тестовая сборка",
+    "playMusic": true
+}

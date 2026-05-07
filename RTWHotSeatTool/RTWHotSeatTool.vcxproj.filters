@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="sources\ImGui">
+      <UniqueIdentifier>{19e57dbd-3f38-4224-8dc4-fb5286df71c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\imgui.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\imgui_demo.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\imgui_draw.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\imgui_tables.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\imgui_widgets.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="mainMenu.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\backends\imgui_impl_dx9.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\backends\imgui_impl_win32.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\differentFunctions\dm_assert.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\ImGui\textures.cpp">
+      <Filter>sources\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\differentFunctions\screenshoter.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTWHSTLibrary\differentFunctions\log.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\imgui.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\imgui_internal.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\imgui_notify.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\imstb_rectpack.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\imstb_textedit.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\imstb_truetype.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\backends\imgui_impl_dx9.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\backends\imgui_impl_win32.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="mainMenu.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\differentFunctions\dm_assert.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\ImGui\textures.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RTWHSTLibrary\differentFunctions\screenshoter.h">
+      <Filter>sources\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RTWHotSeatTool.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon\eop_icon.ico" />
+  </ItemGroup>
+</Project>

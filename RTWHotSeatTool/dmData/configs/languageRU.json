@@ -1,0 +1,74 @@
+{
+    "cfg":                  "Не удалось открыть RTWHST.cfg.dm!",
+    "dll":                  "Отсутствует файл RTWHSTLibrary.dll!",
+	"game":                 "Не удалось запустить игру!",
+    "process":              "Не удалось открыть процесс!",
+    "memory":               "Не удалось выделить память!",
+    "rome_jpeg":            "Отсутствует файл dmData/images/rome.jpeg",
+    "cursor_tga":           "Отсутствует файл dmData/cursor/cursor.tga",
+	"with_dll":             "Запустить с RTWHSTLibrary.dll",
+	"without_dll":          "Запустить без RTWHSTLibrary.dll",
+	"close":                "Закрыть",
+    "play_music":           "Включить музыку",
+    "language":             "Язык",
+    "hotSeat":              "Выбрать ХотСит",
+    "hideLauncher":         "Скрыть лаунчер",
+    "hideLauncTooltip":     "Скрыть лаунчер при дальнейших запусках программы.\nИгра автоматически будет запускаться в режиме \"Запустить с RTWHSTLibrary.dll\" \nТакже настройки можно менять в \\dmData\\configs\\launchSettings.json",
+    "ancillaryLimit":       "Лимит анчей",
+    "ancLimitTooltip":      "Установить новый лимит анчей\nпо умолчанию - 8, максимум - 127",
+    "logLevel":             "Уровень лога",
+
+    "RTWHST":               "RTWHotSeatTool запущен",
+    "battle1":              "Битва создается: ",
+    "battle2":              "Битва создана: ",
+    "kConsole":             "Консоль ключника",
+    "consVer":              "ver. 0.0.1",
+    "stratCoords":          "Координаты страт карты: ",
+    "selCoords":            "Выбраны координаты: ",
+    "selChar":              "Выбран персонаж: ",
+    "PMOpercent":           "Отнять -10% за отступление",
+	"currHotSeat":          "Текущий ХотСит: ",
+    "battResult":           "Результат битвы создан: ",
+    "failedRes":            "Не удалось создать результаты боя",
+    "transferRes":          "Перенести результаты боя",
+    "fileMissing":          "Не удалось загрузить файл: ",
+    "resultsDone":          "Результаты перенесены",
+    "createBattle":         "Создать битву",
+    "errNumUnits":          "Количество юнитов в файле результатов и в бою не совпадают.",
+    "errTypeUnits":         "Типы юнитов в файле результатов и в бою не совпадают.",
+
+    "playersList":          "Игроки",
+    "incomingMessage":      "Входящее сообщение",
+    "writeMessage":         "Написать сообщение",
+    "reply":                "Ответить",
+    "deleteMessage":        "Удалить сообщение",
+    "sendMessage":          "Отправить сообщение",
+    "quitGame":             "Выйти из игры",
+    "loadSave":             "Загрузить сохранение",
+    "start":                "СТАРТ",
+    "setNickname":          "установить никнейм",
+    "setPlayer":            "Установить фракцию игрока",
+    "deletePlayer":         "Удалить фракцию игрока",
+    "nickname":             "никнейм",
+    "password":             "пароль ",
+    "isKeymaster":          "это фракция ключника",
+    "husbands":             "Почаще предлагать мужей дочерям",
+    "updateFiles":          "Обновите все файлы",
+    "updKeyPass":           "Обновить пароль ключника",
+    "setKeyPass":           "установить пароль ключника",
+    "openHS":               "Открыть настройки ХотСит кампании",
+	"neverWithdraw":        "Армии игроков никогда не отступают",
+    "player":               "Игрок"
+}
+
+
+
+
+
+
+
+
+
+
+
+

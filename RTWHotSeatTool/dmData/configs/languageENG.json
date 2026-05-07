@@ -1,0 +1,74 @@
+{
+    "cfg":                  "Failed to open RTWHST.cfg.dm!",
+    "dll":                  "RTWHSTLibrary.dll file is missing!",
+	"game":                 "Failed to start the game!",
+    "process":              "Failed to open process!",
+    "memory":               "Failed to allocate memory!",
+    "rome_jpeg":            "Missing file dmData/images/rome.jpeg!",
+    "cursor_tga":           "Missing file dmData/cursor/cursor.tga!",
+	"with_dll":             "Start with RTWHSTLibrary.dll",
+	"without_dll":          "Start without RTWHSTLibrary.dll",
+	"close":                "Close",
+    "play_music":           "Play music",
+    "language":             "Language",
+    "hotSeat":              "Select HotSeat",
+    "hideLauncher":         "Hide launcher",
+    "hideLauncTooltip":     "Hide the launcher on subsequent program launches.\nThe game will automatically start in mode \"Start with RTWHSTLibrary.dll\" \nIt is also possible to change the settings in the \\dmData\\configs\\launchSettings.json",
+    "ancillaryLimit":       "Ancillary limit",
+    "ancLimitTooltip":      "Set a new ancillary limit\ndefault - 8, maximum - 127",
+    "logLevel":             "Log level",
+
+    "RTWHST":               "RTWHotSeatTool launched",
+    "battle1":              "The battle is being created: ",
+    "battle2":              "The battle is created: ",
+    "kConsole":             "Keymaster's Console",
+    "consVer":              "ver. 0.0.1",
+    "stratCoords":          "Coords of the strat map: ",
+    "selCoords":            "Coords selected: ",
+    "selChar":              "Character selected: ",
+    "PMOpercent":           "Subtract -10% for retreat",
+	"currHotSeat":          "Current HotSeat: ",
+    "battResult":           "Battle result created: ",
+    "failedRes":            "Failed to generate battle results",
+    "transferRes":          "Transfer battle results",
+    "fileMissing":          "Failed to upload file: ",
+    "resultsDone":          "Results done",
+    "createBattle":         "Create a battle",
+    "errNumUnits":          "The number of units in the results file and in the battle do not match.",
+    "errTypeUnits":         "The unit types in the results file and in the battle does not match.",
+
+    "playersList":          "Players list",
+    "incomingMessage":      "Incoming message",
+    "writeMessage":         "Write message",
+    "reply":                "Reply",
+    "deleteMessage":        "Delete message",
+    "sendMessage":          "Send message",
+    "quitGame":             "Quit Game",
+    "loadSave":             "Load Save",
+    "start":                "START",
+    "setNickname":          "set nickname",
+    "setPlayer":            "Set player faction",
+    "deletePlayer":         "Delete player faction",
+    "nickname":             "nickname",
+    "password":             "password",
+    "isKeymaster":          "is keymaster faction",
+    "husbands":             "Offer husbands to daughters more often",
+    "updateFiles":          "Update all files",
+    "updKeyPass":           "Update keymaster password",
+    "setKeyPass":           "Set keymaster password",
+    "openHS":               "Open HotSeat campaign settings",
+	"neverWithdraw":        "Armies of players never withdraw",
+    "player":               "Player"
+}
+
+
+
+
+
+
+
+
+
+
+
+

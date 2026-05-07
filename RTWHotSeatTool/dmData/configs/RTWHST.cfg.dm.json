@@ -1,0 +1,13 @@
+{
+    "RTWHotSeatTool сит": " -ne -show_err -enable_editor",
+    "Ланжан сит":         " -show_err -mod:NL -noalexander -nm -ne -enable_editor",
+    "Юг-запад":           " -noalexander -ne -show_err -enable_editor",
+    "Эллада":             " -ne -mod:VAR -nm -show_err -noalexander -enable_editor",
+    "Тестовая сборка":    " -ne -show_err -enable_editor",
+    "Naval":              " -ne -mod:VanillaNB -show_err -enable_editor"
+}
+
+
+
+
+

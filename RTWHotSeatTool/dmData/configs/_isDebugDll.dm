@@ -1,0 +1,1 @@
+Переименуй этот файл в isDebugDll.dm, если хочешь точку останова(IsDebuggerPresent()) в DllMain(...)

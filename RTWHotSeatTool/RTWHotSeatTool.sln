@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RTWHotSeatTool", "RTWHotSeatTool.vcxproj", "{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RTWHSTLibrary", "..\RTWHSTLibrary\RTWHSTLibrary.vcxproj", "{C39DFB12-1AD1-4190-98B0-65757A3C63D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		faction_limit|x64 = faction_limit|x64
+		faction_limit|x86 = faction_limit|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Debug|x64.ActiveCfg = Debug|x64
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Debug|x64.Build.0 = Debug|x64
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Debug|x86.ActiveCfg = Debug|Win32
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Debug|x86.Build.0 = Debug|Win32
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.faction_limit|x64.ActiveCfg = faction_limit|x64
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.faction_limit|x64.Build.0 = faction_limit|x64
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.faction_limit|x86.ActiveCfg = faction_limit|Win32
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.faction_limit|x86.Build.0 = faction_limit|Win32
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Release|x64.ActiveCfg = Release|x64
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Release|x64.Build.0 = Release|x64
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Release|x86.ActiveCfg = Release|Win32
+		{BA5B95E4-E9B5-44D9-B47B-1D89AF6C73D3}.Release|x86.Build.0 = Release|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x64.ActiveCfg = Debug|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x64.Build.0 = Debug|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x86.Build.0 = Debug|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.faction_limit|x64.ActiveCfg = faction_limit|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.faction_limit|x64.Build.0 = faction_limit|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.faction_limit|x86.ActiveCfg = faction_limit|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.faction_limit|x86.Build.0 = faction_limit|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x64.ActiveCfg = Release|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x64.Build.0 = Release|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x86.ActiveCfg = Release|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F8FA5AA-2CF8-4F07-BFF4-30634A5FD9D7}
+	EndGlobalSection
+EndGlobal
