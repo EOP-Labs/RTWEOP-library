@@ -58,46 +58,6 @@ extern LOG_STRUCT LOG;
 
 
 
-/////////////////////
-//	
-//	#define LOG_ALWAYS(level, text)			LOG.always(level, text)
-//	
-//	#define LOG_REMINDER_EXTENDED(text)		LOG.reminder(text, _CRT_WIDE(__FILE__), (unsigned)(__LINE__))
-//	#define LOG_REMINDER(text)				LOG_REMINDER_EXTENDED(text)
-//	
-//	
-//	#if NDEBUG
-//	#define LOG_ASSERT_EXTENDED(condition, text)	LOG.dm_assert_r(condition, text, _CRT_WIDE(__FILE__), (unsigned)(__LINE__))
-//	#else
-//	#define LOG_ASSERT_EXTENDED(condition, text)	assert(LOG.dm_assert(condition, text, _CRT_WIDE(__FILE__), (unsigned)(__LINE__)))
-//	#endif
-//	
-//	#define LOG_ASSERT(condition, text)					LOG_ASSERT_EXTENDED(condition, text)
-//	
-/////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -99,21 +99,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\dinar\source\RTWHotSeatTool\RTWHSTLibrary\ImGui;C:\Users\dinar\source\RTWHotSeatTool\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>$(DXSDK_DIR)\Include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='faction_limit|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\dinar\source\RTWHotSeatTool\RTWHSTLibrary\ImGui;C:\Users\dinar\source\RTWHotSeatTool\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>$(DXSDK_DIR)\Include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\dinar\source\RTWHotSeatTool\RTWHSTLibrary\ImGui;C:\Users\dinar\source\RTWHotSeatTool\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>$(DXSDK_DIR)\Include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
