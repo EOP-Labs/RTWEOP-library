@@ -8,11 +8,11 @@
 #include <tchar.h>
 #include <imgui_internal.h>
 #include "mainMenu.h"
-#include <RTWHotSeatTool/RTWHSTLibrary/memory/memoryWork.h>
+#include <memoryWork.h>
 #include <windows.h>
 #include <mmsystem.h>//sndPlaySound
 #include <textures.h>
-#include <RTWHotSeatTool/RTWHSTLibrary/differentFunctions/dm_assert.h>
+#include <dm_assert.h>
 
 #if defined(_MSC_VER)
 #pragma comment(lib, "winmm.lib")

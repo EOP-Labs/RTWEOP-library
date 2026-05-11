@@ -96,13 +96,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(SolutionDir)..\RTWHSTLibrary\memory;$(SolutionDir)..\RTWHSTLibrary\differentFunctions;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='faction_limit|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(SolutionDir)..\RTWHSTLibrary\memory;$(SolutionDir)..\RTWHSTLibrary\differentFunctions;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +116,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\RTWHSTLibrary\ImGui;$(SolutionDir)..\RTWHSTLibrary\include;$(SolutionDir)..\RTWHSTLibrary\memory;$(SolutionDir)..\RTWHSTLibrary\differentFunctions;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
