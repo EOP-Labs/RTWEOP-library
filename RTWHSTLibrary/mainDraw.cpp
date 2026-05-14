@@ -1195,7 +1195,6 @@ void new_events::testGameEvents()
     LOG_ALWAYS(RELEASE, "testGameEvents()");
 
 #ifdef _DEBUG
-    LOG_REMINDER("###ПЕРЕДЕЛАТЬ!!! - напоминание - искать в проекте - ###ПЕРЕДЕЛАТЬ!!!");
     LOG_REMINDER("!!! eduFormation для стим версии!!!");
 #endif // _DEBUG
 
