@@ -198,6 +198,27 @@ static string writeFactionsSection(factionStruct* fac, battleSide& side, int sid
     return factionsSection;
 }
 
+static bool fix0soldierCount(unit* uni, stackStruct* army)
+{
+    if (uni->SoldierCountStrat > 0)
+        return true;
+
+
+    for (int u = 0; u < army->numOfUnits; u++)
+    {
+        unit* un = army->units[u];
+        if (un->soldiersBattleArr && un->SoldierCountStrat > 0)
+        {
+            LOG_ALWAYS(RELEASE, "fix0soldierCount(" + string(uni->eduEntry->Type) + ")");
+            uni->soldiersBattleArr = un->soldiersBattleArr;
+            return true;
+        }
+    }
+
+
+    return false;
+}
+
 static bool checkBattleArea()
 {
     for (int s = 0; s < qa.battle->sidesNum; s++)
@@ -209,12 +230,12 @@ static bool checkBattleArea()
             for (int u = 0; u < army->numOfUnits; u++)
             {
                 unit* un = army->units[u];
-                if (un->soldiersBattleArr == nullptr)
+                if (un->soldiersBattleArr == nullptr && !fix0soldierCount(un, army))
                 {
                     LOG_ALWAYS(RELEASE, "checkBattleArea(false)");
                     return false;
                 }
-                if (un->soldiersBattleArr[0]->xCoord == 0 && un->soldiersBattleArr[0]->yCoord == 0)
+                if (un->soldiersBattleArr && un->soldiersBattleArr[0]->xCoord == 0 && un->soldiersBattleArr[0]->yCoord == 0)
                 {
                     LOG_ALWAYS(RELEASE, "checkBattleArea(false)");
                     return false;
@@ -531,7 +552,14 @@ namespace battle_create
 {
     void onBattleStateChange(battleDataS* battle)
     {
-
+    //  if (/*battle->battleState == DEPLOYMENT_1 ||*/ battle->battleState == CONFLICT)
+    //  {
+    //      Sleep(100);
+    //      _createBattleState = 2;
+    //      LOG_ALWAYS(RELEASE, "---createBattle(2)---");
+    //      createBattleFile(2);
+    //      goCreateBattle = false;
+    //  }
     }
 
     void onBattleEnd(battleDataS* battle)

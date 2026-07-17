@@ -591,9 +591,16 @@ namespace battle_result
                     unitJ.at("general").get_to(generalJ);
 
                     for (int u = 0; u < army->numOfUnits; u++)
-                //  for (int u = army->numOfUnits; u >= 0; u--)
                     {
                         unit* un = army->units[u];
+
+                        if (numberInArmy == u && unitType == un->eduEntry->Type)
+                        {
+                            int sol = 0;
+                            unitJ.at("soldiers").get_to(sol);
+                            un->SoldierCountStrat = sol;
+                            LOG_ALWAYS(BUGTEST, "createMinorCharacters(sol: " + to_string(sol) + ", SoldierCountStrat: " + to_string(un->SoldierCountStrat) + ", SoldierCountBattlemap: " + to_string(un->SoldierCountBattlemap) + ")");
+                        }
 
                         if (u > 0 && !un->general && !generalJ.is_number() && numberInArmy == u && unitType == un->eduEntry->Type)
                         {

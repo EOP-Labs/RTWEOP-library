@@ -1473,10 +1473,10 @@ static struct helperMenu
     string inputSuzerain                = "";
     string inputVassal                  = "";
 
-    int inputKillUnit[19]               = {};
-    int inputAncillary[128]             = {};
-    int inputUnitAlias[19]              = {};
-    int inputDipStance[9]               = {};
+    int inputKillUnit                   = 0;
+    int inputAncillary                  = 8;
+    int inputUnitAlias                  = 0;
+    int inputDipStance                  = 0;
 
     bool isNamedCharacter               = false;
     string coordsClick                  = "";
@@ -1494,10 +1494,10 @@ static struct helperMenu
         inputSuzerain                   (""),
         inputVassal                     (""),
 
-        inputKillUnit                   (),
-        inputAncillary                  (),
-        inputUnitAlias                  (),
-        inputDipStance                  (),
+        inputKillUnit                   (0),
+        inputAncillary                  (8),
+        inputUnitAlias                  (0),
+        inputDipStance                  (0),
 
         isNamedCharacter                (false),
         coordsClick                     (""),
@@ -1697,11 +1697,11 @@ void draw_main()
 
 
 #if _DEBUG
-    ImGui::InputInt("##4", &helper.inputAncillary[0], 1);
+    ImGui::InputInt("##4", &helper.inputAncillary, 1);
     ImGui::SameLine();
     if (ImGui::Button("set ancillary limit"))
     {
-    	uint8_t l = helper.inputAncillary[0];
+    	uint8_t l = helper.inputAncillary;
     	LOG_ALWAYS(BUGTEST, "setAncLimit(" + to_string(l) + ")");
     	new_events::setAncLimit(l);
     }
@@ -1709,13 +1709,13 @@ void draw_main()
 
     if (qa.selectGeneral && qa.selectGeneral->gen && qa.selectGeneral->gen->armyLeaded)
     {
-    	ImGui::InputInt("##3", &helper.inputKillUnit[0], 1);
+    	ImGui::InputInt("##3", &helper.inputKillUnit, 1);
     	ImGui::SameLine();
     	if (ImGui::Button("kill this unit"))
     	{
-            LOG_ALWAYS(BUGTEST, "kill this unit: " + to_string(helper.inputKillUnit[0]));
+            LOG_ALWAYS(BUGTEST, "kill this unit: " + to_string(helper.inputKillUnit));
     
-            int u = helper.inputKillUnit[0];
+            int u = helper.inputKillUnit;
             unit* targetUnit = NULL;
     
             if (u >= 0 && u <= qa.selectGeneral->gen->armyLeaded->numOfUnits)
@@ -1815,14 +1815,14 @@ void draw_main()
     ImGui::PopItemWidth();
     ImGui::SameLine();
     ImGui::PushItemWidth(100.F);
-    ImGui::InputInt("##11", &helper.inputDipStance[0], 1);
+    ImGui::InputInt("##11", &helper.inputDipStance, 1);
     ImGui::PopItemWidth();
     if (ImGui::Button("setDipStance"))
     {
     	if (factionStruct* fac1 = helper_functions::getFactionByName(helper.inputSuzerain);
     		factionStruct* fac2 = helper_functions::getFactionByName(helper.inputVassal))
     	{
-    		qa.campaignStruct->setDipStance(DipRelEnum(helper.inputDipStance[0]), fac1, fac2);
+    		qa.campaignStruct->setDipStance(DipRelEnum(helper.inputDipStance), fac1, fac2);
     		LOG_ALWAYS(BUGTEST, "setDipStance");
     	}
     }
@@ -1833,7 +1833,7 @@ void draw_main()
     	if (factionStruct* fac1 = helper_functions::getFactionByName(helper.inputSuzerain);
     		factionStruct* fac2 = helper_functions::getFactionByName(helper.inputVassal))
     	{
-    		bool result = qa.campaignStruct->checkDipStance(DipRelEnum(helper.inputDipStance[0]), fac1, fac2);
+    		bool result = qa.campaignStruct->checkDipStance(DipRelEnum(helper.inputDipStance), fac1, fac2);
     		LOG_ALWAYS(BUGTEST, "checkDipStance");
     	}
     }
@@ -1848,14 +1848,14 @@ void draw_main()
     
     
     ImGui::InputText("##7", &helper.inputAlias);
-    ImGui::InputInt("##6", &helper.inputUnitAlias[0], 1);
+    ImGui::InputInt("##6", &helper.inputUnitAlias, 1);
     ImGui::SameLine();
     if (ImGui::Button("test_alias") && qa.selectGeneral)
     {
     	string s2 = u8"" + helper.inputAlias;
-    	uint8_t l = helper.inputAncillary[0];
+    	uint8_t l = helper.inputAncillary;
     
-    	createUniString(qa.selectGeneral->gen->armyLeaded->units[helper.inputUnitAlias[0]]->alias, s2.c_str());
+    	createUniString(qa.selectGeneral->gen->armyLeaded->units[helper.inputUnitAlias]->alias, s2.c_str());
     
     	string notif = "alias: " + helper.inputAlias;
     	LOG_ALWAYS(BUGTEST, notif);
@@ -1865,7 +1865,7 @@ void draw_main()
     }
     if (ImGui::Button("test_locName") && qa.selectGeneral)
     {
-    	uint8_t l = helper.inputAncillary[0];
+    	uint8_t l = helper.inputAncillary;
     
     	string _localizedFullName = uniStringToStr(qa.selectGeneral->localizedFullName);
     	createUniString(qa.selectGeneral->localizedFullName, helper.inputAlias.c_str());
