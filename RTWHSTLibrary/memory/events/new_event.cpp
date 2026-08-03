@@ -75,6 +75,7 @@ namespace new_events
     t_onAttachRegionSettlement o_onAttachRegionSettlement = nullptr;
     t_onSetPreBattleWithdrawal o_onSetPreBattleWithdrawal = nullptr;
     t_onBattleInstigate o_onBattleInstigate = nullptr;
+    t_onBuildingCaptured o_onBuildingCaptured = nullptr;
 
 
     void initNewEvents()
@@ -259,6 +260,9 @@ namespace new_events
         o_onBattleInstigate = (t_onBattleInstigate)offsets.onBattleInstigate;
         DETOUR_ATTACH(&(PVOID&)o_onBattleInstigate, onBattleInstigate);
 
+        o_onBuildingCaptured = (t_onBuildingCaptured)offsets.onBuildingCaptured;
+        DETOUR_ATTACH(&(PVOID&)o_onBuildingCaptured, onBuildingCaptured);
+
 
         saveFiles.deleteAll();
     }
@@ -328,6 +332,7 @@ namespace new_events
         DETOUR_DETACH(&(PVOID&)o_onAttachRegionSettlement, onAttachRegionSettlement);
         DETOUR_DETACH(&(PVOID&)o_onSetPreBattleWithdrawal, onSetPreBattleWithdrawal);
         DETOUR_DETACH(&(PVOID&)o_onBattleInstigate, onBattleInstigate);
+        DETOUR_DETACH(&(PVOID&)o_onBuildingCaptured, onBuildingCaptured);
 
 
         saveFiles.deleteAll();
@@ -1110,6 +1115,17 @@ namespace new_events
         }
     }
 
+    void __cdecl onBuildingCaptured(void* building, stackStruct* army, int alliance)
+    {
+        if (startSettings.disableBuildingCapturedMessage)
+        {
+            LOG_ALWAYS(RELEASE, "onBuildingCaptured(return)");
+            return;
+        }
+        o_onBuildingCaptured(building, army, alliance);
+        LOG_ALWAYS(RELEASE, "onBuildingCaptured()");
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1147,6 +1163,9 @@ namespace new_events
 
     void setAncLimit(uint8_t limit)
     {
+        if (startSettings.gameVersion == 2)
+            return;
+
         LOG_ALWAYS(RELEASE, "setAncLimit(" + to_string(limit) + ")");
 
         const DWORD ancillaries1 = 0x005A6EA1;

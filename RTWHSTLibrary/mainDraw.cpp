@@ -1178,11 +1178,7 @@ int __fastcall FUN_004a9634(int param_1, int stub, int param_2, char param_3)
         LOG_REMINDER("FUN_004a9634(ФИКС ДЛЯ ХОТ-СИТ КАМПАНИИ)");
         return 0;
     }
-
-
-    int result = o_FUN_004a9634(param_1, stub, param_2, param_3);
-
-    return result;
+    return o_FUN_004a9634(param_1, stub, param_2, param_3);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1360,6 +1356,7 @@ void new_events::testGameEvents()
 	DETOUR_ATTACH(&(PVOID&)o_FUN_004a9634, FUN_004a9634);
 
 
+
     //...   
 }
 
@@ -1371,14 +1368,15 @@ void setLanguageDLL()
     /**/
 	ifstream fl("dmData/configs/launchSettings.json");
 	json dataL = json::parse(fl);
-	dataL.at("playMusic"     ).get_to(startSettings.playMusic);
-	dataL.at("language"      ).get_to(startSettings.language);
-	dataL.at("mainHotSeat"   ).get_to(startSettings.mainHotSeat);
-	dataL.at("ancillaryLimit").get_to(startSettings.ancLimit);
-	dataL.at("logLevel"      ).get_to(startSettings.logLevel);
-    dataL.at("debugExe"      ).get_to(startSettings.debugExe);
-    dataL.at("debugDll"      ).get_to(startSettings.debugDll);
-    dataL.at("gameVersion"   ).get_to(startSettings.gameVersion);
+	dataL.at("playMusic"                     ).get_to(startSettings.playMusic);
+	dataL.at("language"                      ).get_to(startSettings.language);
+	dataL.at("mainHotSeat"                   ).get_to(startSettings.mainHotSeat);
+	dataL.at("ancillaryLimit"                ).get_to(startSettings.ancLimit);
+	dataL.at("logLevel"                      ).get_to(startSettings.logLevel);
+    dataL.at("debugExe"                      ).get_to(startSettings.debugExe);
+    dataL.at("debugDll"                      ).get_to(startSettings.debugDll);
+    dataL.at("gameVersion"                   ).get_to(startSettings.gameVersion);
+    dataL.at("disableBuildingCapturedMessage").get_to(startSettings.disableBuildingCapturedMessage);
 
     LOG.setLogLevel(LOG_LEVEL(startSettings.logLevel));
     /**/

@@ -18,15 +18,16 @@ void setLanguageDLL();
 
 struct launchSettings
 {
-	bool        playMusic    = true;
-	std::string language     = "RU";
-	std::string mainHotSeat  = "";
-	bool        hideLauncher = false;
-	uint8_t     ancLimit     = 8;
-	int         logLevel     = 0;
-	bool        debugExe	 = false;
-	bool        debugDll	 = false;
-	int         gameVersion  = 1;
+	bool        playMusic                      = true;
+	std::string language                       = "RU";
+	std::string mainHotSeat                    = "";
+	bool        hideLauncher                   = false;
+	uint8_t     ancLimit                       = 8;
+	int         logLevel                       = 0;
+	bool        debugExe	                   = false;
+	bool        debugDll	                   = false;
+	int         gameVersion                    = 1;
+	bool        disableBuildingCapturedMessage = false;
 };
 extern launchSettings startSettings;
 

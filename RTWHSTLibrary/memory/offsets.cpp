@@ -89,6 +89,7 @@ void gameOffsets::init(int gameVer)
 		onSetPreBattleWithdrawal                            = 0x006059e0;
 		onBattleInstigate                                   = 0x00603294;
 		neverWithdraw                                       = 0x0060403D;
+		onBuildingCaptured                                  = 0x00c6f018;
 		///monitor_event.cpp
 		onFactionTurnStart                                  = 0x008340a4;
 		onFactionWarDeclared                                = 0x008340c8;
@@ -327,6 +328,7 @@ void gameOffsets::init(int gameVer)
 		onSetPreBattleWithdrawal                            = NULL;
 		onBattleInstigate                                   = NULL;
 		neverWithdraw                                       = NULL;
+		onBuildingCaptured                                  = 0x00cbfa81;
 		///monitor_event.cpp
 		onFactionTurnStart                                  = NULL;
 		onFactionWarDeclared                                = NULL;

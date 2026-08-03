@@ -84,6 +84,7 @@ struct gameOffsets
 	DWORD onSetPreBattleWithdrawal                            = NULL;
 	DWORD onBattleInstigate                                   = NULL;
 	DWORD neverWithdraw                                       = NULL;
+	DWORD onBuildingCaptured                                  = NULL;
 	///monitor_event.cpp
 	DWORD onFactionTurnStart                                  = NULL;
 	DWORD onFactionWarDeclared                                = NULL;

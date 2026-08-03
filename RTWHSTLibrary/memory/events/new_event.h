@@ -61,6 +61,7 @@ using t_onRestorePointers = void(__fastcall*)(settlementStruct* _this, int stub)
 using t_onAttachRegionSettlement = void(__fastcall*)(stratMap* _this, int stub, int regionID, settlementStruct* settlement);
 using t_onSetPreBattleWithdrawal = void(__fastcall*)(battleDataS* _this, int stub, bool withdraw);
 using t_onBattleInstigate = void(__fastcall*)(battleDataS* _this, int stub, character* attacker, character* defender, battleType type, bool nightBattle, bool withdraw);
+using t_onBuildingCaptured = void(__cdecl*)(void* building, stackStruct* army, int alliance);
 
 
 namespace new_events
@@ -184,6 +185,7 @@ namespace new_events
     void __fastcall onAttachRegionSettlement(stratMap* _this, int stub, int regionID, settlementStruct* settlement);
     void __fastcall onSetPreBattleWithdrawal(battleDataS* _this, int stub, bool withdraw);
     void __fastcall onBattleInstigate(battleDataS* _this, int stub, character* attacker, character* defender, battleType type, bool nightBattle, bool withdraw);
+    void __cdecl onBuildingCaptured(void* building, stackStruct* army, int alliance);
 
 	void initNewEvents();
 	void deInitNewEvents();

@@ -25,6 +25,8 @@
 #include <dwmapi.h>
 #include <regex>
 using json = nlohmann::json;
+
+#define TEST_STEAM_LAUNCH
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -561,6 +563,16 @@ int STARTER::WinMain()
         const ImVec2 label_size = ImGui::CalcTextSize(text.c_str(), NULL, true);
         if (!m_is_start && ImGui::Button(text.c_str(), ImVec2(-1.0f, (label_size.y + style.FramePadding.y * 2.0f) * 2)))
         {
+
+        #ifdef TEST_STEAM_LAUNCH 
+            if (m_game_version == 2)               // Тест нового способа запуска стим версии   
+            {
+                m_is_game_ranger = true;
+                m_is_start = true;
+                LOG_ASSERT(startGame() == TRUE, desTab.game);
+            }
+        #endif // TEST_STEAM_LAUNCH
+
             stopPlayOurSound();
             if (!m_is_game_ranger)
             {
