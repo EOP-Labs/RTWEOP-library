@@ -4,6 +4,8 @@
 #include "../../differentFunctions/encryption.h"
 using namespace std;
 
+#define SAVE_FILE (0xbbfc)
+
 struct HS_FACTION
 {
 

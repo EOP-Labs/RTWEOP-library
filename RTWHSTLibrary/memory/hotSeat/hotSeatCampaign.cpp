@@ -11,8 +11,6 @@
 #include <imgui_notify.h>
 #include <textures.h>
 
-#define SAVE_FILE (0xbbfc)
-
 using namespace std;
 using json = nlohmann::json;
 

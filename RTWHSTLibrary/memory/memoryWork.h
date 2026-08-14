@@ -28,6 +28,7 @@ struct launchSettings
 	bool        debugDll	                   = false;
 	int         gameVersion                    = 1;
 	bool        disableBuildingCapturedMessage = false;
+	bool        standardSave                   = false;
 };
 extern launchSettings startSettings;
 

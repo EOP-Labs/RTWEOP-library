@@ -1377,6 +1377,7 @@ void setLanguageDLL()
     dataL.at("debugDll"                      ).get_to(startSettings.debugDll);
     dataL.at("gameVersion"                   ).get_to(startSettings.gameVersion);
     dataL.at("disableBuildingCapturedMessage").get_to(startSettings.disableBuildingCapturedMessage);
+    dataL.at("standardSave"                  ).get_to(startSettings.standardSave);
 
     LOG.setLogLevel(LOG_LEVEL(startSettings.logLevel));
     /**/

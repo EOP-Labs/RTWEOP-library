@@ -444,6 +444,13 @@ namespace new_events
     {
         string save = uniToAnsi(savePath);
 
+        if (startSettings.standardSave && !HOT_SEAT_CAMPAIGN.m_is_hot_seat_campaign)
+        {
+            HOT_SEAT_CAMPAIGN.brokenSave(SAVE_FILE);
+            LOG_ALWAYS(RELEASEFULL, "onSaveCreate(standardSave: " + save + ")");
+            return o_onSaveCreate(_this, stub, savePath, param_2);
+        }
+
         if (HOT_SEAT_CAMPAIGN.m_file_requester_scroll)
         {
            string saveStr = uniStringToStr(savePath);
@@ -494,8 +501,16 @@ namespace new_events
         LOG_ALWAYS(RELEASEFULL, "onSaveLoad(" + save + ")");
 
         saveFiles.deleteFiles();
- 
         saveFiles.files = helper_functions::unzip(save, "dmData\\temp");
+
+        if (startSettings.standardSave && saveFiles.files.size() == 0)
+        {
+            HOT_SEAT_CAMPAIGN = HOT_SEAT();
+            HOT_SEAT_CAMPAIGN.brokenSave(SAVE_FILE);
+            LOG_ALWAYS(RELEASEFULL, "onSaveLoad(standardSave: " + save + ")");
+            return o_onSaveLoad(_this, stub, savePath);
+        }
+
         createUniString(uniStr, "dmData\\temp\\temp_file");
         savePath = uniStr;
 
