@@ -370,13 +370,7 @@ namespace new_events
             Sleep(100);
         }
 
- //     if (qa.isUnitLimitTest)
- //     {
- //         qa.isUnitLimitTest = false;
- //     }
-
-
-        if (unlockUnitSizelimit)
+        if (unlockUnitSizelimit && startSettings.gameVersion != 2)
         {
             unlockUnitSizelimit = false;
             LOG_ALWAYS(RELEASEFULL, "unlockUnitSizelimit");
@@ -1164,7 +1158,7 @@ namespace new_events
 
 //  void onCampaignMapLoaded(campaign* campaignStruct)
 //  {
-//      LOG(RELEASE, "new_events::onCampaignMapLoaded(" + boolStr(campaignStruct) + ")");
+//      LOG_ALWAYS(RELEASE, "new_events::onCampaignMapLoaded(" + boolStr(campaignStruct) + ")");
 //  }
 
     void onCampaignMapUnloaded()
@@ -1241,11 +1235,11 @@ namespace new_events
         if (!new_husband)
             return nullptr;
 
-		char* param_2 = reinterpret_cast<char*>(0x0101cf14);
-		char* param_3 = reinterpret_cast<char*>(0x029b66b4);
-		marriageOption* mo = GAME_FUNC(marriageOption*(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), 0x00ee12b0)(0x10, param_2, param_3, 0x1ff4, 1); //classCreatorNEW    
+		char* param_2 = reinterpret_cast<char*>(startSettings.gameVersion == 1 ? 0x0101cf14 : 0x010dc074);
+		char* param_3 = reinterpret_cast<char*>(startSettings.gameVersion == 1 ? 0x029b66b4 : 0x010dd6f0);
+		marriageOption* mo = GAME_FUNC(marriageOption*(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), offsets.classCreatorNEW)(0x10, param_2, param_3, 0x1ff4, 1);
 
-		mo->yesNoClass      = reinterpret_cast<void*>(0x029b6670);//puVar8 = &PTR_LAB_029b6670;
+		mo->yesNoClass      = reinterpret_cast<void*>(startSettings.gameVersion == 1 ? 0x029b6670 : 0x00fef394);//puVar8 = &PTR_LAB_029b6670;
 		mo->madeChoice      = false;
 		mo->accepted        = false;
 		mo->possibleHusband = new_husband;
@@ -1282,7 +1276,7 @@ namespace new_events
 
         remove("dmData\\temp\\temp_file2");
 
-    //  LOG(RELEASEFULL, "Command not found: " + string(scriptName));
+    //  LOG_ALWAYS(RELEASEFULL, "Command not found: " + string(scriptName));
     }
 
     void callScriptFromFile(const char* fileName)
@@ -1300,7 +1294,7 @@ namespace new_events
         onExecuteScript(script);
         delete dFile;
 
-    //  LOG(RELEASEFULL, "Command not found: " + string(fileName));
+    //  LOG_ALWAYS(RELEASEFULL, "Command not found: " + string(fileName));
     }
 
     void scriptCommand(const char* scriptName, const char* arg)

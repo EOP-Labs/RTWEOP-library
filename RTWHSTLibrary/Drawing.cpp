@@ -8,6 +8,8 @@
 #include "memory/hotSeat/hotSeatCampaign.h"
 #include "memory/hotSeat/createBattle.h"
 
+#define STEAM_DRAW
+
 BOOL   Drawing::bInit       = FALSE;    // Status of the initialization of ImGui.
 bool   Drawing::bDisplay    = true;     // Status of the menu display.
 ImVec2 Drawing::vWindowPos  = { 0, 0 }; // Last ImGui window position.
@@ -66,6 +68,37 @@ HRESULT __fastcall Drawing::onGameDrawOnLoadingScreen(void* _this, int* param_1,
 	return result;
 }
 
+#define TEST_STEAM_DRAW
+#ifdef TEST_STEAM_DRAW
+#include "differentFunctions/dm_assert.h"
+bool isDrawSteamMenu = false;
+static void test_steam_draw()
+{
+	if (ImGui::IsKeyPressed(ImGuiKey_GraveAccent) && ImGui::IsKeyDown(ImGuiKey_LeftCtrl))
+	{
+		isDrawSteamMenu = !isDrawSteamMenu;
+	}
+	if (!isDrawSteamMenu) return;
+
+
+	ImGui::SetNextWindowPos({ 0,0 }, ImGuiCond_Always);
+	DWORD dwFlag = ImGuiWindowFlags_None;
+	ImGui::SetNextWindowSize(ImVec2(450.0f, 400.0f), ImGuiCond_Once);
+	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.9f);
+	string hsName = desTab.currHotSeat + startSettings.mainHotSeat;
+	ImGui::Begin(hsName.c_str(), &isDrawSteamMenu, dwFlag);
+	ImGui::PopStyleVar(1);
+	ImGui::Separator();
+
+	if (ImGui::Button("TEST"))
+	{
+		ImGui::InsertNotification({ ImGuiToastType_Success, 3000, "TEST" });
+	}
+
+	ImGui::Separator();
+	ImGui::End();
+}
+#endif // TEST_STEAM_DRAW
 
 void Drawing::draw()
 {
@@ -75,14 +108,17 @@ void Drawing::draw()
 
 	if (bDisplay)
 	{
-		if (startSettings.gameVersion == 2)// если это Steam версия, то только битвы - временно   
-		{
-			battle_create::drawBattle();
-		}
-		else
-		{
+	//	if (startSettings.gameVersion == 2)// если это Steam версия, то только битвы - временно   
+	//	{
+	//		battle_create::drawBattle();
+	//	#ifdef TEST_STEAM_DRAW
+	//		test_steam_draw();
+	//	#endif // TEST_STEAM_DRAW
+	//	}
+	//	else
+	//	{
 			draw_main();
-		}
+	//	}
 	}
 
 	// Render toasts on top of everything, at the end of your code!
@@ -97,6 +133,7 @@ void Drawing::draw()
 	ImGuiIO& io = ImGui::GetIO();
 	gameWindow.mouseAtImgui = io.WantCaptureMouse;
 	gameWindow.mouseAtImgui |= io.WantCaptureKeyboard;
+	io.MouseDrawCursor = gameWindow.mouseAtImgui && startSettings.gameVersion == 2;
 
 	ImGui::EndFrame();
 	ImGui::Render();
@@ -158,10 +195,13 @@ HRESULT Drawing::hkPresent(IDirect3DDevice9* D3D9Device, const RECT* pSourceRect
 				gameWindow.texturesForDeleting.push_back((IDirect3DTexture9*)tex);
 			};
 	}
+#ifdef STEAM_DRAW
 	else if (bInit && startSettings.gameVersion == 2)// если это Steam версия - временно   
+//	else if (bInit && startSettings.gameVersion == 2 && !HOT_SEAT_CAMPAIGN.m_is_strat_map_draw)// если это Steam версия - временно   
 	{
 		draw();
 	}
+#endif // STEAM_DRAW
 
 
 
@@ -266,9 +306,6 @@ void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 	io.ConfigFlags = ImGuiConfigFlags_NoMouseCursorChange;
 	io.ConfigFlags &= ~ImGuiConfigFlags_NavEnableKeyboard;
 	io.MouseDrawCursor = false;
-//	io.DisplaySize = ImVec2((float)(gameWindow.rect.right - gameWindow.rect.left), (float)(gameWindow.rect.bottom - gameWindow.rect.top));
-//	io.DisplaySize = ImVec2(1024.0f, 768.0f);
-	
 
 	ImFontConfig font_config;
 	font_config.OversampleH = 1;
@@ -277,7 +314,6 @@ void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 	font_config.PixelSnapH = 1;
 	font_config.FontDataOwnedByAtlas = false;
 
-	//	ImFont* newFont = io.Fonts->AddFontFromFileTTF(u8"C:\\Windows\\Fonts\\Tahoma.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesCyrillic());
 	ImFont* newFont = io.Fonts->AddFontFromFileTTF(u8"dmData\\fonts\\mainFont.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesCyrillic());
 	if (newFont == nullptr)
 	{
@@ -285,7 +321,6 @@ void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 	}
 	ImGui::MergeIconsWithLatestFont(16.f, false);
 
-//	ImGui::StyleColorsDark();
 	SetStyle();
 	ImGui_ImplWin32_Init(Hook::window);
 	ImGui_ImplDX9_Init(pDevice);
@@ -293,6 +328,7 @@ void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 	bInit = TRUE;
 	new_events::onInit(bInit);
 }
+
 
 
 

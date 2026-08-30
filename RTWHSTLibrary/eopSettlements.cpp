@@ -15,7 +15,7 @@ namespace eop_settlements
 	{
 		LOG_ALWAYS(RELEASE, "addSettlements(coords: " + to_string(xCoord) + "," + to_string(yCoord) + ", name: " + string(name) + ", locName: " + string(locName)  + ", faction: " + string(faction->factSmDescr->facName) + ")");
 
-	//	FUN_00896eb0 - addSettlementInEmptyRegion   
+	//	FUN_00896eb0 - addSettlementInEmptyRegion  steam: FUN_008ec614 
 
 		oneTile* tile = helper_functions::getTile(xCoord, yCoord);
 	//	if (tile->settlement || tile->fort || tile->port || !tile->isLand)
@@ -27,23 +27,23 @@ namespace eop_settlements
 
 		regionStruct* region = helper_functions::getRegionByID(tile->regionId);
 
-		planSet* plan = GAME_FUNC(planSet*(__thiscall*)(DWORD _this), 0x008ca9a8)(0x0018358c); // getPlanSet getPlanSet2
+		planSet* plan = GAME_FUNC(planSet*(__thiscall*)(DWORD _this), 0x008ca9a8)(0x0018358c); // getPlanSet getPlanSet2 //steam: getPlanSet = 009106bb, getPlanSet2 = ? 
 
 		int local_50 = 0xffffffff;
 		settlementStruct* new_settlement = new settlementStruct;
-		GAME_FUNC(settlementStruct*(__thiscall*)(settlementStruct* _this, planSet* plan_set, int level, int* capabilities, int facID), 0x005c4148)(new_settlement, plan, 0, &local_50, region->loyaltyFactionID); // settlementConstructor   
+		GAME_FUNC(settlementStruct*(__thiscall*)(settlementStruct* _this, planSet* plan_set, int level, int* capabilities, int facID), 0x005c4148)(new_settlement, plan, 0, &local_50, region->loyaltyFactionID); // settlementConstructor    //steam: 005b2db8
 
 		helper_functions::setHashedString(&new_settlement->name, name);
 
 		coords* c = new coords(xCoord, yCoord);
 		stratPathFinding* stratPath = reinterpret_cast<stratPathFinding*>(0x01682ce4); // stratPathFinding 
-		GAME_FUNC(void(__thiscall*)(stratPathFinding* _this, settlementStruct* sett, coords* c), 0x004c4af4)(stratPath, new_settlement, c); // spawnCreatedObject 
+		GAME_FUNC(void(__thiscall*)(stratPathFinding* _this, settlementStruct* sett, coords* c), 0x004c4af4)(stratPath, new_settlement, c); // spawnCreatedObject //steam: 004aeb8f
 
 		const auto nameMem = new UNICODE_STRING*;
 		new_settlement->localizedName = nameMem;
 		createUniString(new_settlement->localizedName, locName);
 	
-		GAME_FUNC(void(__thiscall*)(settlementStruct* _this, factionStruct* fac), 0x005c86f0)(new_settlement, faction); // settAttachFaction 
+		GAME_FUNC(void(__thiscall*)(settlementStruct* _this, factionStruct* fac), 0x005c86f0)(new_settlement, faction); // settAttachFaction  //steam: 005b90ef
 
 		new_settlement->yearFounded = qa.campaignStruct->currentDate;
 		new_settlement->regionID = tile->regionId;
@@ -62,17 +62,17 @@ namespace eop_settlements
 	//	GAME_FUNC(void(__thiscall*)(settlementStatsManager* _this, unsigned int), 0x005dbbec)(&new_settlement->stats, 999);	// setPopulation   
 		new_settlement->setPopulation(999);
 
-		GAME_FUNC(void(__thiscall*)(settlementStruct* _this), 0x005c5ae8)(new_settlement); // createRallyPoint   
-		GAME_FUNC(void(__thiscall*)(settlementStruct* _this, unsigned int* c), 0x005d13ac)(new_settlement, &new_settlement->xCoord); // initRallyPoint 
+		GAME_FUNC(void(__thiscall*)(settlementStruct* _this), 0x005c5ae8)(new_settlement); // createRallyPoint    //steam: 005bcdef
+		GAME_FUNC(void(__thiscall*)(settlementStruct* _this, unsigned int* c), 0x005d13ac)(new_settlement, &new_settlement->xCoord); // initRallyPoint  //steam: 005bce46
 
-		GAME_FUNC(void(__thiscall*)(stratPathFinding*, settlementStruct*), 0x004cc75c)(stratPath, new_settlement); // areaOfInfluence   
+		GAME_FUNC(void(__thiscall*)(stratPathFinding*, settlementStruct*), 0x004cc75c)(stratPath, new_settlement); // areaOfInfluence     //steam: 004aee91 
 
-		GAME_FUNC(void(__thiscall*)(settlementList* _this, settlementStruct* sett), 0x005d7e30)(&qa.campaignStruct->settlementList, new_settlement); // addToSettlementList   
-		bool result = GAME_FUNC(bool(__thiscall*)(settlementStruct* _this), 0x004b0ab0)(new_settlement); // checkTileCharactersAlready   
+		GAME_FUNC(void(__thiscall*)(settlementList* _this, settlementStruct* sett), 0x005d7e30)(&qa.campaignStruct->settlementList, new_settlement); // addToSettlementList    //steam: 005c8cf1   
+		bool result = GAME_FUNC(bool(__thiscall*)(settlementStruct* _this), 0x004b0ab0)(new_settlement); // checkTileCharactersAlready     //steam: 0049e58a
 
 	//	new_settlement->triumph = 1; // minorSettlementIndex  // ++ 
 
-		GAME_FUNC(void(__thiscall*)(settlementStatsManager*, bool), 0x005d8e14)(&new_settlement->stats, true);	// recalculateSettlement   
+		GAME_FUNC(void(__thiscall*)(settlementStatsManager*, bool), 0x005d8e14)(&new_settlement->stats, true);	// recalculateSettlement    //steam: 005ca877 
 	//	GAME_FUNC(void(__thiscall*)(settlementStruct*), 0x005c5f70)(new_settlement);	// restorePointers   
 
 

@@ -270,16 +270,8 @@ HWND Hook::GetProcessWindow()
     @param  size   : Size of the array of pointers.
     @retval : True if the function succeed else False.
 **/
-bool testInit = false;
 BOOL Hook::GetD3D9Device(void** pTable, const size_t size)
 {
-	while (testInit && IsDebuggerPresent() == false)
-	{
-		Sleep(100);
-	}
-
-
-
 	if (!pTable)
 		return FALSE;
 
@@ -364,50 +356,7 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 	{
 		return CallWindowProc(gameWindow.m_pWindowProc, hWnd, msg, wParam, lParam);
 	}
-	// TO-DO: Stop this code from crashing
-	// switch (uMsg)
-	// {
-	// case WM_SETFOCUS:
-	// 	RECT rect;
-	// 	if (!GetWindowRect(hWnd, &rect)) {
-	// 		break;
-	// 	}
-	// 	ClipCursor(&rect);
-	// 	break;
-	// case WM_KILLFOCUS:
-	// 	ClipCursor(NULL);
-	// 	break;
-	// }
 
-//	static bool isLastAtImgui = false;
-//	static HCURSOR lastGameCursor = NULL;
-//	//	if (ImGui::GetIO().WantCaptureMouse)
-//	if (mouseAtImgui)
-//	{
-//	//	HCURSOR retCur = LoadCursorFromFile(TEXT("data\\cursors\\arrow.cur"));
-//	//	SetSystemCursor(retCur, 32512);
-//	//	HCURSOR retCur = LoadCursorFromFile(L"dmData\\cursor\\arrow.cur");
-//	//	SetCursor(retCur);
-//
-//		isLastAtImgui = true;
-//		HCURSOR retCur = SetCursor(NULL);
-//		if (retCur != NULL)
-//		{
-//			lastGameCursor = retCur;
-//		}
-//		ImGuiIO& io = ImGui::GetIO();
-//		io.MouseDrawCursor = true;
-//	}
-//	else
-//	{
-//		if (lastGameCursor != NULL)
-//		{
-//			SetCursor(lastGameCursor);
-//			lastGameCursor = NULL;
-//		}
-//		ImGuiIO& io = ImGui::GetIO();
-//		io.MouseDrawCursor = false;
-//	}
 	if (gameWindow.mouseAtImgui)
 	{
 		switch (msg)
@@ -424,58 +373,17 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 		case WM_MOUSEWHEEL:
 		case WM_CHAR:
 		case WM_SETCURSOR:
-	//	case WM_MOUSEMOVE:
-	//	case WM_MOUSEMOVE:
-	//	{
-	//		SetCursorPos(gameCursor->previousPosition.xCoord, gameCursor->previousPosition.yCoord);
-	//	}
 		case WM_INPUTLANGCHANGE:
 		case WM_KEYDOWN:
 		case WM_KEYUP:
-
-			//	case WM_SETCURSOR:
-			//		// Turn off window cursor. 
-			//		SetCursor(NULL);
-			//		gpDevice->ShowCursor(TRUE);
-			//		return TRUE; // Prevent Windows from setting cursor to window class cursor.
-			//		break;
-
 			return true;
 		}
-
 	}
-
 
 	if (gameWindow.isLeftAlt)
 	{
 		switch (msg)
 		{
-	//	case WM_MOUSEWHEEL:
-	//	{
-	//		RECT rect;
-	//		GetWindowRect(hWnd, &rect);
-	//
-	//		short wheel = GET_WHEEL_DELTA_WPARAM(wParam);
-	//		if (wheel < 0)
-	//		{
-	//			rect.right -= 10;
-	//			rect.bottom -= 10;
-	//		}
-	//		else
-	//		{
-	//			rect.right += 10;
-	//			rect.bottom += 10;
-	//		}
-	//
-	//		if (rect.right < 500) rect.right = 500;
-	//		if (rect.bottom < 500) rect.bottom = 500;
-	//		MoveWindow(hWnd, gameWindow.rect.left, gameWindow.rect.top, rect.right, rect.bottom, false);
-	//
-	//
-	//		break;
-	//	}
-
-
 		case WM_LBUTTONDOWN:
 		{
 			m_Pos = MAKEPOINTS(lParam);
@@ -486,43 +394,27 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 			if (wParam == MK_LBUTTON)
 			{
 				POINTS p = MAKEPOINTS(lParam);
-
 				RECT rect;
 				GetWindowRect(hWnd, &rect);
 
 				rect.left += p.x - m_Pos.x;
 				rect.top += p.y - m_Pos.y;
-//				if (m_Pos.x >= 0 && m_Pos.x <= gameWindow.rect.right && m_Pos.y >= 0 && m_Pos.y <= gameWindow.rect.bottom)
-//				{
-					SetWindowPos(hWnd, NULL, rect.left, rect.top, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOZORDER);
-				//	MoveWindow(hWnd, rect.left, rect.top, gameWindow.rect.right, gameWindow.rect.bottom, false);
 
-					rect.right += p.x - m_Pos.x;
-					rect.bottom += p.y - m_Pos.y;
+				SetWindowPos(hWnd, NULL, rect.left, rect.top, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOZORDER);
 
-					int min = 250;
-					if (rect.right < min) rect.right = min;
-					if (rect.bottom < min) rect.bottom = min;
+				rect.right += p.x - m_Pos.x;
+				rect.bottom += p.y - m_Pos.y;
 
-					int xSize = GetSystemMetrics(SM_CXSCREEN);
-					int ySize = GetSystemMetrics(SM_CYSCREEN);
-					if (rect.right > xSize) rect.right = xSize;
-					if (rect.bottom > ySize) rect.bottom = ySize;
+				int min = 250;
+				if (rect.right < min) rect.right = min;
+				if (rect.bottom < min) rect.bottom = min;
 
-					MoveWindow(hWnd, gameWindow.rect.left, gameWindow.rect.top, rect.right, rect.bottom, false);
+				int xSize = GetSystemMetrics(SM_CXSCREEN);
+				int ySize = GetSystemMetrics(SM_CYSCREEN);
+				if (rect.right > xSize) rect.right = xSize;
+				if (rect.bottom > ySize) rect.bottom = ySize;
 
-
-
-				//	pSetCursorPos(rect.left + p.x, rect.top + p.y);
-
-					//	SetCursorPos(m_Pos.x, m_Pos.y);
-
-					//	gameWindow.pDevice->SetCursorPosition(m_Pos.x, m_Pos.y, 0);
-
-					//	COORD pos = { m_Pos.x, m_Pos.y };
-					//	HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-					//	SetConsoleCursorPosition(output, pos);
-//				}
+				MoveWindow(hWnd, gameWindow.rect.left, gameWindow.rect.top, rect.right, rect.bottom, false);
 			}
 			break;
 		}
@@ -547,7 +439,6 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 		}
 	}
 
-
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
 }
 
@@ -567,9 +458,6 @@ HRESULT Hook::hkReset(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS* pPresent
 	isReset = true;
 	return tmpReset;
 }
-
-
-
 
 
 

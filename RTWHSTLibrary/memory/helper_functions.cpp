@@ -19,7 +19,7 @@ namespace helper_functions
 	{
 		char errorBuffer[100]{};
 		errorBuffer[0] = '\0';
-		consoleCommands* cmd = reinterpret_cast<consoleCommands*>(0x02763240);
+		consoleCommands* cmd = reinterpret_cast<consoleCommands*>(offsets.console);
 		for (int i = 0; i < cmd->size; i++)
 		{
 			auto currCom = cmd->commands[i];
@@ -43,7 +43,7 @@ namespace helper_functions
 		const char* arg = "";
 		char errorBuffer[100]{};
 		errorBuffer[0] = '\0';
-		consoleCommands* cmd = reinterpret_cast<consoleCommands*>(0x02763240);
+		consoleCommands* cmd = reinterpret_cast<consoleCommands*>(offsets.console);
 		for (int i = 0; i < cmd->size; i++)
 		{
 			auto currCom = cmd->commands[i];
@@ -65,7 +65,7 @@ namespace helper_functions
 	void printGameConsoleCommands()
 	{
 		string printText = "'Rome: Total War - Alexander' console commands list: \n\n";
-		consoleCommands* cmd = reinterpret_cast<consoleCommands*>(0x02763240);
+		consoleCommands* cmd = reinterpret_cast<consoleCommands*>(offsets.console);
 		for (int i = 0; i < cmd->size; i++)
 		{
 			console_command* currCom = cmd->commands[i];

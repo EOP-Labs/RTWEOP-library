@@ -660,12 +660,14 @@ ImVec2 getCenteredPos(ImVec2 size)
 
 void HOT_SEAT::drawPassword()
 {
-	if (!m_open_password || !m_is_strat_map_draw)
+//	if (!m_open_password || !m_is_strat_map_draw)
+	if (!m_open_password || (!m_is_strat_map_draw && startSettings.gameVersion == 1))
 		return;
 
 
 
-	while (qa.toggle_fow == 0)
+//	while (qa.toggle_fow == 0)
+	while (qa.toggle_fow == 0 && startSettings.gameVersion == 1)
 	{
 #ifdef _DEBUG
 		LOG_ALWAYS(RELEASE, "while (qa.toggle_fow == 0)");

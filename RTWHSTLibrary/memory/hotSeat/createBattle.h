@@ -21,7 +21,6 @@ struct quickAccess
     namedCharacter* selectGeneral;
     int xLocCoord = 0;
     int yLocCoord = 0;
-    bool isUnitLimitTest = false;
     const char* modPatch;
     std::string fullPatch;
     int toggle_fow = 0;

@@ -5080,6 +5080,16 @@ struct planSet
 	int index;
 };
 
+enum missionEnum
+{
+	notSuccess,
+	slightly,
+	success = slightly,
+	partly,
+	highly,
+};
+
+
 
 
 

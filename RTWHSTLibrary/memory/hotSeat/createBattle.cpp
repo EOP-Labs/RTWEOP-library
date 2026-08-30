@@ -719,13 +719,13 @@ void battle_create::zoomAndSpeed()
         }
 
         // speed 
-        else if (GetKeyState(VK_ADD) & 0x8000 && GetKeyState(VK_LSHIFT) & 0x8000)     // SHIFT + 
+        else if (GetKeyState(VK_ADD) & 0x8000 && GetKeyState(VK_LSHIFT) & 0x8000)            // SHIFT + 
         {
             qa.battle->speed = qa.battle->speed + 0.025f;
             if (qa.battle->speed > 10.0f) qa.battle->speed = 10.0f;
             return;
         }
-        else if (GetKeyState(VK_SUBTRACT) & 0x8000 && GetKeyState(VK_LSHIFT) & 0x8000)     // SHIFT - 
+        else if (GetKeyState(VK_SUBTRACT) & 0x8000 && GetKeyState(VK_LSHIFT) & 0x8000)       // SHIFT - 
         {
             qa.battle->speed -= 0.025f;
             if (qa.battle->speed < 0.0f) qa.battle->speed = 0.025f;
@@ -736,14 +736,8 @@ void battle_create::zoomAndSpeed()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool debuggAddresses = false;
 void getAddresses()
 {
-    while (debuggAddresses && !IsDebuggerPresent())
-    {
-        Sleep(100);
-    }
-
     LOG_ALWAYS(RELEASE, "getAddresses()");
     gameWindow.RomeTW_ALX_exe = (uint32_t)GetModuleHandle(nullptr);
 

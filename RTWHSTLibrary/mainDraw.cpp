@@ -34,6 +34,8 @@ launchSettings startSettings;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#define STEAM_DRAW
+
 #define NOINLINE __declspec(noinline)
 #define EOP_EXPORT extern "C" __declspec(dllexport)
 NOINLINE EOP_EXPORT bool callDll(std::string fullPath, launchSettings settings, LOG_LEVEL loglevel, descriptionTab dt);
@@ -1181,6 +1183,41 @@ int __fastcall FUN_004a9634(int param_1, int stub, int param_2, char param_3)
     return o_FUN_004a9634(param_1, stub, param_2, param_3);
 }
 
+#ifdef STEAM_DRAW
+//void __thiscall FUN_00b91e04(int *param_1,byte *param_2,byte param_3)   
+using t_FUN_00b91e04 = void(__fastcall*)(void* _this, int stub, const char* id, bool disable);
+t_FUN_00b91e04 o_FUN_00b91e04 = nullptr;
+void __fastcall FUN_00b91e04(void* _this, int stub, const char* id, bool disable)
+{
+
+
+    o_FUN_00b91e04(_this, stub, id, disable);
+
+    log_always("FUN_00b91e04()");
+}
+
+//void __fastcall FUN_00b1ac34(undefined4 *param_1)
+using t_onGetLocalFaction = factionStruct*(__fastcall*)(void* _this, int stub);
+t_onGetLocalFaction o_onGetLocalFaction = nullptr;
+factionStruct* __fastcall onGetLocalFaction(void* _this, int stub)
+{
+	factionStruct* result = o_onGetLocalFaction(_this, stub);
+    offsets.localFactionStruct = (DWORD)_this;
+    LOG_ALWAYS(BUGTEST, "onGetLocalFaction(" + string(result->factSmDescr->facName) + ")");
+	return result;
+}
+
+using t_transitionToMapView = void(__fastcall*)(void* _this, int stub, unsigned int x, unsigned int y);
+t_transitionToMapView o_transitionToMapView = nullptr;
+void __fastcall transitionToMapView(void* _this, int stub, unsigned int x, unsigned int y)
+{
+    o_transitionToMapView(_this, stub, x, y);
+    offsets.transitionToMapView2 = (DWORD)_this;
+    log_always("transitionToMapView()");
+}
+
+#endif // STEAM_DRAW
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1354,6 +1391,20 @@ void new_events::testGameEvents()
     //ФИКС ДЛЯ ХОТ-СИТ КАМПАНИИ - непонятный вылет при выгрузке карты кампании.   
     o_FUN_004a9634 = (t_FUN_004a9634)offsets.FUN_004a9634;
 	DETOUR_ATTACH(&(PVOID&)o_FUN_004a9634, FUN_004a9634);
+
+
+#ifdef STEAM_DRAW
+//	o_FUN_00b91e04 = (t_FUN_00b91e04)(DWORD)offsets.disableShortcuts1;
+//	DetourAttach(&(PVOID&)o_FUN_00b91e04, FUN_00b91e04);
+
+//	o_onGetLocalFaction = (t_onGetLocalFaction)(DWORD)offsets.getLocalFaction;
+//	DetourAttach(&(PVOID&)o_onGetLocalFaction, onGetLocalFaction);
+
+//  o_transitionToMapView = (t_transitionToMapView)(DWORD)offsets.transitionToMapView;
+//	DetourAttach(&(PVOID&)o_transitionToMapView, transitionToMapView);
+
+#endif // STEAM_DRAW
+
 
 
 
@@ -1579,10 +1630,13 @@ void draw_main()
     ImGui::TextColored(ImColor(208, 206, 92, 255), coordsStr.c_str());
 
 #if _DEBUG
-    string coordsMStr = to_string(gameCursor->previousPosition.xCoord) + ", " + to_string(gameCursor->previousPosition.yCoord);
-    ImGui::TextColored(ImColor(44, 234, 86, 255), "Monitor cursor pos");
-    ImGui::SameLine();
-    ImGui::TextColored(ImColor(208, 206, 92, 255), coordsMStr.c_str());
+    if (gameCursor)
+    {
+        string coordsMStr = to_string(gameCursor->previousPosition.xCoord) + ", " + to_string(gameCursor->previousPosition.yCoord);
+        ImGui::TextColored(ImColor(44, 234, 86, 255), "Monitor cursor pos");
+        ImGui::SameLine();
+        ImGui::TextColored(ImColor(208, 206, 92, 255), coordsMStr.c_str());
+    }
 #endif
 
     if (!gameWindow.mouseAtImgui && coordsStr != "null, null" && ImGui::IsMouseClicked(0))
@@ -1722,7 +1776,6 @@ void draw_main()
     
             if (targetUnit && !targetUnit->general)
                 new_events::o_onKillUnit(targetUnit);
-    		 // selectCharacter->deathType = 1;
         }
     }
 
@@ -1740,7 +1793,6 @@ void draw_main()
     if (qa.selectGeneral && qa.selectGeneral->gen && ImGui::Button("kill this character"))
     {
     	LOG_ALWAYS(BUGTEST, "kill this character: " + string(qa.selectGeneral->fullName));
-    //	selectCharacter->deathType = 1; // мирно скончался(onKillCharacter не сработает), по умолчанию - погиб в бою   
     	new_events::o_onKillCharacter(qa.selectGeneral->gen);
     }
     
@@ -1979,7 +2031,7 @@ void draw_main()
     //      s_C:\barbi_daily\code\ui\strat_v2__02a5acf0, 0xe6, 1);
         char* param_2 = reinterpret_cast<char*>(0x01023294);
         char* param_3 = reinterpret_cast<char*>(0x02a5acf0);
-        fb* gameClass = GAME_FUNC(fb*(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), 0x00ee12b0)(0x15c, param_2, param_3, 0xe6, 1); //classCreatorNEW  
+        fb* gameClass = GAME_FUNC(fb*(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), offsets.classCreatorNEW)(0x15c, param_2, param_3, 0xe6, 1);
 
 	//  coords* c = new coords(900, 122);
 		coords* c = new coords(700, 122); 
@@ -1996,7 +2048,7 @@ void draw_main()
     //      s_C:\barbi_daily\code\game_strat_h_029df9a0, 0xdf, 1);
         char* param_2 = reinterpret_cast<char*>(0x0101fb8c);
         char* param_3 = reinterpret_cast<char*>(0x029df9a0);
-        DWORD gameClass = GAME_FUNC(DWORD(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), 0x00ee12b0)(0x1a0, param_2, param_3, 0xdf, 1); //classCreatorNEW  
+        DWORD gameClass = GAME_FUNC(DWORD(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), offsets.classCreatorNEW)(0x1a0, param_2, param_3, 0xdf, 1);
 
 		//undefined4 * __fastcall FUN_00c35688(undefined4 *param_1)
         GAME_FUNC(int(__thiscall*)(DWORD _this), 0x00c35688)(gameClass); // 
@@ -2105,23 +2157,6 @@ void draw_main()
 		{
 			namedCharacter* daughter    = ch->genChar->childs[0];
             namedCharacter* new_husband = new_events::createCandidateMarrying(daughter);
-            
-            
-        //  namedCharacter* new_husband = new_events::onCreateCandidateMarrying(daughter, 0);
-        //
-		//	char* param_2 = reinterpret_cast<char*>(0x0101cf14);
-		//	char* param_3 = reinterpret_cast<char*>(0x029b66b4);
-		//	marriageOption* mo = GAME_FUNC(marriageOption*(__cdecl*)(int param_1, char* param_2, char* param_3, undefined4 param_4, undefined4 param_5), 0x00ee12b0)(0x10, param_2, param_3, 0x1ff4, 1); //classCreatorNEW    
-        //
-		//	mo->yesNoClass      = reinterpret_cast<void*>(0x029b6670);//puVar8 = &PTR_LAB_029b6670;
-		//	mo->madeChoice      = false;
-		//	mo->accepted        = false;
-		//	mo->possibleHusband = new_husband;
-		//	mo->wife            = daughter;
-		//	daughter->faction->facFamily.marriageOption = mo;
-        //
-		//	new_events::onDaughterReadyMarryHusband(daughter, new_husband, daughter->faction->facFamily.marriageOption);
-
 			LOG_ALWAYS(BUGTEST, "onCreateCandidateMarrying");
 		}
 	}
@@ -2141,13 +2176,22 @@ void draw_main()
 		}
 	}
 
-    if (ImGui::Button("currentFaction"))
+    if (ImGui::Button("log currentFaction + localFaction name"))
     {
         factionStruct* currentFaction = helper_functions::getGameDataAll()->campaignData->currentFactionTurn;
 
         factionStruct* localFaction = qa.campaignStruct->getLocalFaction();
 
-        LOG_ALWAYS(BUGTEST, "currentFaction = " + string(currentFaction->factSmDescr->facName));
+        LOG_ALWAYS(BUGTEST, "currentFaction:" + string(currentFaction->factSmDescr->facName) + ", localFaction:" + string(localFaction->factSmDescr->facName));
+    }
+
+    if (ImGui::Button("onGetFactionByID"))
+    {
+    //  onGetFactionByID(campaign* _this, int stub, int factionID)
+        auto camp = helper_functions::getGameDataAll()->campaignData;
+        int facID = 0;
+        factionStruct* faction = GAME_FUNC(factionStruct*(__thiscall*)(campaign* _this, int factionID), offsets.onGetFactionByID)(camp, facID);
+        LOG_ALWAYS(BUGTEST, "onGetFactionByID = " + string(faction->factSmDescr->facName));
     }
 #endif // _DEBUG 
 
@@ -2186,7 +2230,7 @@ void draw_main()
 
         coords* c = new coords(qa.xLocCoord, qa.yLocCoord);
         stratPathFinding* stratPath = reinterpret_cast<stratPathFinding*>(0x01682ce4); // stratPathFinding 
-        GAME_FUNC(void(__thiscall*)(stratPathFinding* _this, character* new_character, coords* c), 0x004c4af4)(stratPath, new_character, c); // spawnCreatedObject 
+        GAME_FUNC(void(__thiscall*)(stratPathFinding* _this, character* new_character, coords* c), 0x004c4af4)(stratPath, new_character, c); // spawnCreatedObject  //steam: 004aeb8f
 
         faction->dipNum = 21;
     
@@ -2207,7 +2251,7 @@ void draw_main()
 
         coords* c = new coords(qa.xLocCoord, qa.yLocCoord);
         stratPathFinding* stratPath = reinterpret_cast<stratPathFinding*>(0x01682ce4); // stratPathFinding 
-        GAME_FUNC(void(__thiscall*)(stratPathFinding* _this, character* new_character, coords* c), 0x004c4af4)(stratPath, new_character, c); // spawnCreatedObject 
+        GAME_FUNC(void(__thiscall*)(stratPathFinding* _this, character* new_character, coords* c), 0x004c4af4)(stratPath, new_character, c); // spawnCreatedObject  //steam: 004aeb8f
         
         stackStruct* army = new_events::onCreateArmy(faction, 0, new_character, false);
     
@@ -2244,7 +2288,7 @@ void draw_main()
             faction->dipNum = 0;
 
             //00593374
-            GAME_FUNC(void(__thiscall*)(character* character, factionStruct* faction), 0x00593374)(ch, faction); // characterChangeFaction 
+            GAME_FUNC(void(__thiscall*)(character* character, factionStruct* faction), 0x00593374)(ch, faction); // characterChangeFaction //steam: 00583f30
 
 
 

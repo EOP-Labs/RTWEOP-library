@@ -62,6 +62,7 @@ using t_onAttachRegionSettlement = void(__fastcall*)(stratMap* _this, int stub, 
 using t_onSetPreBattleWithdrawal = void(__fastcall*)(battleDataS* _this, int stub, bool withdraw);
 using t_onBattleInstigate = void(__fastcall*)(battleDataS* _this, int stub, character* attacker, character* defender, battleType type, bool nightBattle, bool withdraw);
 using t_onBuildingCaptured = void(__cdecl*)(void* building, stackStruct* army, int alliance);
+using t_onEventTrigger = void(__fastcall*)(DWORD** vTab, DWORD arg2);
 
 
 namespace new_events
@@ -186,6 +187,7 @@ namespace new_events
     void __fastcall onSetPreBattleWithdrawal(battleDataS* _this, int stub, bool withdraw);
     void __fastcall onBattleInstigate(battleDataS* _this, int stub, character* attacker, character* defender, battleType type, bool nightBattle, bool withdraw);
     void __cdecl onBuildingCaptured(void* building, stackStruct* army, int alliance);
+    void __fastcall onEventTrigger(DWORD** vTab, DWORD arg2);
 
 	void initNewEvents();
 	void deInitNewEvents();
