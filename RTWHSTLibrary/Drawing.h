@@ -1,5 +1,6 @@
 #ifndef DRAWING_H
 #define DRAWING_H
+#define TEST_STEAM_DRAW
 
 #include "pch.h"
 
@@ -17,7 +18,7 @@ public:
 
 	static HRESULT __fastcall onDrawGameCursor(void* _this, int stub);
 
-	static HRESULT __fastcall onGameDrawOnStratAndTacticMap(int param_1);
+	static void __fastcall onDrawGameCursorOnStratAndTacticMap(int param_1);
 	static HRESULT __fastcall onGameDrawOnMainMenu(void* _this, int stub, char** name, undefined4 param_3, float* param_4);
 	static HRESULT __fastcall onGameDrawOnLoadingScreen(void* _this, int* param_1, int param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5);
 
@@ -29,6 +30,8 @@ private:
 
 	static void InitImGui(LPDIRECT3DDEVICE9 pDevice);
 };
+
+extern bool isGameWindowDraw;
 
 #endif
 

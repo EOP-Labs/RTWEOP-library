@@ -10,7 +10,7 @@ tEndScene Hook::oEndScene = nullptr; // Pointer of the original EndScene functio
 tPresent Hook::oPresent = nullptr;
 
 tdrawGameCursor Hook::drawGameCursor = nullptr;
-t_onGameDrawOnStratAndTacticMap Hook::o_onGameDrawOnStratAndTacticMap = nullptr;
+t_onDrawGameCursorOnStratAndTacticMap Hook::o_onDrawGameCursorOnStratAndTacticMap = nullptr;
 t_onGameDrawOnMainMenu Hook::o_onGameDrawOnMainMenu = nullptr;
 t_onGameDrawOnLoadingScreen Hook::o_onGameDrawOnLoadingScreen = nullptr;
 
@@ -161,8 +161,8 @@ void Hook::HookDirectX()
 		DETOUR_ATTACH(&(PVOID&)oPresent, Drawing::hkPresent);
 
 
-		o_onGameDrawOnStratAndTacticMap = (t_onGameDrawOnStratAndTacticMap)offsets.onGameDrawOnStratAndTacticMap;
-		DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnStratAndTacticMap, Drawing::onGameDrawOnStratAndTacticMap);
+		o_onDrawGameCursorOnStratAndTacticMap = (t_onDrawGameCursorOnStratAndTacticMap)offsets.onDrawGameCursorOnStratAndTacticMap;
+		DETOUR_ATTACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, Drawing::onDrawGameCursorOnStratAndTacticMap);
 
 		o_onGameDrawOnMainMenu = (t_onGameDrawOnMainMenu)offsets.onGameDrawOnMainMenu;
 		DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnMainMenu, Drawing::onGameDrawOnMainMenu);
@@ -211,7 +211,7 @@ void Hook::UnHookDirectX()
 	DETOUR_DETACH(&(PVOID&)oReset, hkReset);
 	DETOUR_DETACH(&(PVOID&)oPresent, Drawing::hkPresent);
 
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnStratAndTacticMap, Drawing::onGameDrawOnStratAndTacticMap);
+	DETOUR_DETACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, Drawing::onDrawGameCursorOnStratAndTacticMap);
 	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnMainMenu, Drawing::onGameDrawOnMainMenu);
 	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnLoadingScreen, Drawing::onGameDrawOnLoadingScreen);
 

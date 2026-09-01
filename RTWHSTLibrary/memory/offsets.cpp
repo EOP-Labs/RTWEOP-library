@@ -84,7 +84,6 @@ void gameOffsets::init(int gameVer)
 		onTransitionToBattleFromStratMap                    = 0x00869224;
 		transitionToMapView                                 = 0x00b39fbc;
 		transitionToMapView2                                = 0x00188610;
-		stratMapCursor                                      = 0x027421B0;
 		toggle_fow                                          = 0x0165E19C;
 		toggle_fow_pref                                     = 0x01024fc8;
 		onSetPreBattleWithdrawal                            = 0x006059e0;
@@ -255,8 +254,6 @@ void gameOffsets::init(int gameVer)
 		onLeaderSenateMissionSuccess                        = 0x0083d5d4;
 		onLeaderSenateMissionFailed                         = 0x00840830;
 		///mainDraw.cpp
-		game_begin_scene                                    = 0x00ed6d10;
-		game_end_scene                                      = 0x00ed6dc0;
 		onCreateUniString                                   = 0x00ec99b0;
 		onCreateUniStringFromSharedTxtFile                  = 0x00d45d40;
 		onPreBattleEnd                                      = 0x006086c8;
@@ -301,7 +298,11 @@ void gameOffsets::init(int gameVer)
 		FUN_00868790                                        = 0x00868790;
 		FUN_004a9634                                        = 0x004a9634;
 		///Hook.cpp
-		onGameDrawOnStratAndTacticMap                       = 0x00c87bd0;
+		stratMapCursor                                      = 0x027421B0;
+		game_begin_scene                                    = 0x00ed6d10;
+		game_end_scene                                      = 0x00ed6dc0;
+		onDrawGameCursorOnStratAndTacticMap                 = 0x00c87bd0;
+		onGameDrawOnStratAndTacticMap                       = 0x00f095c0;
 		onGameDrawOnMainMenu                                = 0x00924edc;
 		onGameDrawOnLoadingScreen                           = 0x00da62d4;
 	}
@@ -382,7 +383,6 @@ void gameOffsets::init(int gameVer)
 		onTransitionToBattleFromStratMap                    = 0x008ce1b3;
 		transitionToMapView                                 = 0x00b73f4f;
 		transitionToMapView2                                = 0x00188980;
-		stratMapCursor                                      = NULL;
 		toggle_fow                                          = NULL;
 		toggle_fow_pref                                     = NULL;
 		onSetPreBattleWithdrawal                            = 0x005fedbd;
@@ -553,8 +553,6 @@ void gameOffsets::init(int gameVer)
 		onLeaderSenateMissionSuccess                        = 0x008ad0ed;
 		onLeaderSenateMissionFailed                         = 0x008ad1bc;
 		///mainDraw.cpp
-		game_begin_scene                                    = NULL;
-		game_end_scene                                      = NULL;
 		onCreateUniString                                   = 0x00f3e6a0;
 		onCreateUniStringFromSharedTxtFile                  = 0x00da8d4c;
 		onPreBattleEnd                                      = 0x005ff363;
@@ -599,14 +597,12 @@ void gameOffsets::init(int gameVer)
 		FUN_00868790                                        = NULL;
 		FUN_004a9634                                        = NULL;
 		///Hook.cpp
-		onGameDrawOnStratAndTacticMap                       = NULL;
-	//	onGameDrawOnStratAndTacticMap                       = 0x00d1e031;//no cursor 
-	//	onGameDrawOnStratAndTacticMap                       = 0x00c955bf;//no cursor 
-	//	onGameDrawOnStratAndTacticMap                       = 0x00a94133;//no cursor 
-	//	onGameDrawOnStratAndTacticMap                       = 0x00e5f9d3;//no cursor
-	//	onGameDrawOnStratAndTacticMap                       = 0x004132fd;//no cursor
-	//	onGameDrawOnStratAndTacticMap                       = 0x0041328f;//no cursor
-		onGameDrawOnMainMenu                                = NULL;
+		stratMapCursor                                      = 0x29C74F0;
+		game_begin_scene                                    = 0x00f4be40;
+		game_end_scene                                      = 0x00f4bef0;
+		onDrawGameCursorOnStratAndTacticMap                 = 0x00cd4acb;
+		onGameDrawOnStratAndTacticMap                       = 0x00f7e020;
+		onGameDrawOnMainMenu                                = 0x009749fb;
 		onGameDrawOnLoadingScreen                           = NULL;
 	}
 }

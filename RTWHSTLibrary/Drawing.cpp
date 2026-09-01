@@ -8,8 +8,6 @@
 #include "memory/hotSeat/hotSeatCampaign.h"
 #include "memory/hotSeat/createBattle.h"
 
-#define STEAM_DRAW
-
 BOOL   Drawing::bInit       = FALSE;    // Status of the initialization of ImGui.
 bool   Drawing::bDisplay    = true;     // Status of the menu display.
 ImVec2 Drawing::vWindowPos  = { 0, 0 }; // Last ImGui window position.
@@ -18,11 +16,13 @@ ImVec2 Drawing::vWindowSize = { 0, 0 }; // Last ImGui window size.
 
 HRESULT Drawing::hkBeginScene(const LPDIRECT3DDEVICE9 D3D9Device)
 {
+	LOG_ALWAYS(BUGTEST, "Drawing::hkBeginScene");
 	return Hook::oBeginScene(D3D9Device);
 }
 
 HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 {
+	LOG_ALWAYS(BUGTEST, "Drawing::hkEndScene");
 	return Hook::oEndScene(D3D9Device);
 }
 
@@ -31,23 +31,26 @@ HRESULT __fastcall Drawing::onDrawGameCursor(void* _this, int stub)
 	return Hook::drawGameCursor(_this, stub);
 }
 
-
 //////////////////////////////////////////////////////////////////////
 // render на страт карте и тактике   
-HRESULT __fastcall Drawing::onGameDrawOnStratAndTacticMap(int param_1)
+void __fastcall Drawing::onDrawGameCursorOnStratAndTacticMap(int param_1)
 {
-	HRESULT result = Hook::o_onGameDrawOnStratAndTacticMap(param_1);
+//	Hook::o_onDrawGameCursorOnStratAndTacticMap(param_1);
+
+//	if (offsets.stratMapCursor == param_1 + 0x90)
 
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = true;
 	draw();
-
-	return result;
 }
 
+bool isGameWindowDraw = false;
 //////////////////////////////////////////////////////////////////////
 // render в главном меню   
 HRESULT __fastcall Drawing::onGameDrawOnMainMenu(void* _this, int stub, char** name, undefined4 param_3, float* param_4)
 {
+	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnMainMenu");
+	isGameWindowDraw = true;
+
 	HRESULT result = Hook::o_onGameDrawOnMainMenu(_this, stub, name, param_3, param_4);
 
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = false;
@@ -68,9 +71,9 @@ HRESULT __fastcall Drawing::onGameDrawOnLoadingScreen(void* _this, int* param_1,
 	return result;
 }
 
-#define TEST_STEAM_DRAW
 #ifdef TEST_STEAM_DRAW
 #include "differentFunctions/dm_assert.h"
+bool DISABLE_DRAW = true;
 bool isDrawSteamMenu = false;
 static void test_steam_draw()
 {
@@ -102,6 +105,12 @@ static void test_steam_draw()
 
 void Drawing::draw()
 {
+#ifdef TEST_STEAM_DRAW
+	if (DISABLE_DRAW)
+		return;
+#endif // TEST_STEAM_DRAW
+
+
 	ImGui_ImplDX9_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
@@ -133,7 +142,7 @@ void Drawing::draw()
 	ImGuiIO& io = ImGui::GetIO();
 	gameWindow.mouseAtImgui = io.WantCaptureMouse;
 	gameWindow.mouseAtImgui |= io.WantCaptureKeyboard;
-	io.MouseDrawCursor = gameWindow.mouseAtImgui && startSettings.gameVersion == 2;
+//	io.MouseDrawCursor = gameWindow.mouseAtImgui && startSettings.gameVersion == 2;
 
 	ImGui::EndFrame();
 	ImGui::Render();
@@ -195,16 +204,6 @@ HRESULT Drawing::hkPresent(IDirect3DDevice9* D3D9Device, const RECT* pSourceRect
 				gameWindow.texturesForDeleting.push_back((IDirect3DTexture9*)tex);
 			};
 	}
-#ifdef STEAM_DRAW
-	else if (bInit && startSettings.gameVersion == 2)// если это Steam версия - временно   
-//	else if (bInit && startSettings.gameVersion == 2 && !HOT_SEAT_CAMPAIGN.m_is_strat_map_draw)// если это Steam версия - временно   
-	{
-		draw();
-	}
-#endif // STEAM_DRAW
-
-
-
 
 	if (GetAsyncKeyState(VK_INSERT) & 1)
 	{
