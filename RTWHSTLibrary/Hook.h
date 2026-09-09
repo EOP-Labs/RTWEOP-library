@@ -12,12 +12,7 @@ using tReset = HRESULT(APIENTRY*)(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETE
 using tPresent = HRESULT(APIENTRY*)(IDirect3DDevice9*, CONST RECT*, CONST RECT*, HWND, CONST RGNDATA*);
 
 typedef int undefined4;
-using t_onDrawGameCursorOnStratAndTacticMap = void(__fastcall*)(int param_1);
-using t_onGameDrawOnMainMenu = HRESULT(__fastcall*)(void* _this, int stub, char** name, undefined4 param_3, float* param_4);
-using t_onGameDrawOnLoadingScreen = HRESULT(__fastcall*)(void* _this, int* param_1, int param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5);
-
 using tdrawGameCursor = HRESULT(__fastcall*)(void* _this, int stub);
-
 
 class Hook
 {
@@ -25,11 +20,6 @@ public:
 	static bool isReset;
 
 	static tdrawGameCursor drawGameCursor;
-
-	static t_onDrawGameCursorOnStratAndTacticMap o_onDrawGameCursorOnStratAndTacticMap;
-	static t_onGameDrawOnMainMenu o_onGameDrawOnMainMenu;
-	static t_onGameDrawOnLoadingScreen o_onGameDrawOnLoadingScreen;
-
 	static IDirect3DDevice9* pDevice;
 	static tBeginScene oBeginScene;
 	static tEndScene oEndScene;

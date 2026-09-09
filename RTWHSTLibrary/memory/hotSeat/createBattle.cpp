@@ -602,11 +602,8 @@ namespace battle_create
     //  qa.currentFaction = reinterpret_cast<factionStruct*>(currentFactionAddress);
         qa.currentFaction = camp->currentFactionTurn;
 
-        if (offsets.toggle_fow)
-        {
-            qa.toggle_fow      = *reinterpret_cast<int*>(offsets.toggle_fow);
-            qa.toggle_fow_pref = *reinterpret_cast<int*>(offsets.toggle_fow_pref);
-        }
+        qa.toggle_fow      = *reinterpret_cast<bool*>(offsets.toggle_fow);
+        qa.toggle_fow_pref = *reinterpret_cast<bool*>(offsets.toggle_fow_pref);
 
         LOG_ALWAYS(RELEASE, "modPatch: " + string(qa.modPatch) +
             ", battle: "                 + boolStr(qa.battle) +

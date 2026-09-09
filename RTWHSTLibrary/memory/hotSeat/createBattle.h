@@ -23,8 +23,8 @@ struct quickAccess
     int yLocCoord = 0;
     const char* modPatch;
     std::string fullPatch;
-    int toggle_fow = 0;
-    int toggle_fow_pref = 0;
+    bool toggle_fow      = false;
+    bool toggle_fow_pref = false;
 };
 
 extern quickAccess qa;

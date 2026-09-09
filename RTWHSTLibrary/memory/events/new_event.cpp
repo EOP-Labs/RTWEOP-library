@@ -598,12 +598,8 @@ namespace new_events
 
     HRESULT __fastcall onActionMove(character* _this, int stub, character_action* action)
     {
-    //	character_action* action_test = reinterpret_cast<character_action*>(0x006fdce8);
-
         LOG_ALWAYS(DEVELOPMENT, "onActionMove()");
-
-        HRESULT result = o_onActionMove(_this, stub, action);
-        return result;
+        return o_onActionMove(_this, stub, action);
     }
 
     /// BATTLE ///   
@@ -676,9 +672,9 @@ namespace new_events
         return result;
     }
 
-    HRESULT __fastcall onBeginSiege(character* _this, int stub, settlementStruct* settlement)
+    HRESULT __fastcall onBeginSiege(character* _this, int stub, settlementStruct* settlement/*or fort*/)
     {
-        LOG_ALWAYS(RELEASEFULL, "onBeginSiege(character: " + string(_this->genChar->fullName) + ", settlement: " + string(settlement->name) + ")");
+        LOG_ALWAYS(RELEASEFULL, "onBeginSiege(character: " + string(_this->genChar->fullName) + ")");
 
         return o_onBeginSiege(_this, stub, settlement);
     }

@@ -59,7 +59,6 @@ namespace eop_settlements
 		new_settlement->cultureID = faction->cultureID;
 	//	new_settlement->isMinorSettlement = true;
 
-	//	GAME_FUNC(void(__thiscall*)(settlementStatsManager* _this, unsigned int), 0x005dbbec)(&new_settlement->stats, 999);	// setPopulation   
 		new_settlement->setPopulation(999);
 
 		GAME_FUNC(void(__thiscall*)(settlementStruct* _this), 0x005c5ae8)(new_settlement); // createRallyPoint    //steam: 005bcdef
@@ -73,7 +72,7 @@ namespace eop_settlements
 	//	new_settlement->triumph = 1; // minorSettlementIndex  // ++ 
 
 		GAME_FUNC(void(__thiscall*)(settlementStatsManager*, bool), 0x005d8e14)(&new_settlement->stats, true);	// recalculateSettlement    //steam: 005ca877 
-	//	GAME_FUNC(void(__thiscall*)(settlementStruct*), 0x005c5f70)(new_settlement);	// restorePointers   
+	//	GAME_FUNC(void(__thiscall*)(settlementStruct*), 0x005c5f70)(new_settlement);	// restorePointers   //steam: 005b440f   
 
 
 	#ifdef _DEBUG

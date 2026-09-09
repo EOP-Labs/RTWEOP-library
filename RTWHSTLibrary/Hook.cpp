@@ -8,11 +8,7 @@ LPDIRECT3DDEVICE9 Hook::pDevice = nullptr; // Direct3D9 Device Object
 tEndScene Hook::oBeginScene = nullptr; // Pointer of the original EndScene function
 tEndScene Hook::oEndScene = nullptr; // Pointer of the original EndScene function
 tPresent Hook::oPresent = nullptr;
-
 tdrawGameCursor Hook::drawGameCursor = nullptr;
-t_onDrawGameCursorOnStratAndTacticMap Hook::o_onDrawGameCursorOnStratAndTacticMap = nullptr;
-t_onGameDrawOnMainMenu Hook::o_onGameDrawOnMainMenu = nullptr;
-t_onGameDrawOnLoadingScreen Hook::o_onGameDrawOnLoadingScreen = nullptr;
 
 tReset Hook::oReset = nullptr; // Pointer of the original Reset function
 HWND Hook::window = nullptr; // Window of the current process
@@ -145,31 +141,19 @@ void Hook::HookDirectX()
 {
 	if (GetD3D9Device(d3d9Device, sizeof(d3d9Device)))
 	{
+		DetourTransactionBegin();
+		DetourUpdateThread(GetCurrentThread());
+
+
 		oBeginScene = (tBeginScene)d3d9Device[41];
 		oEndScene = (tEndScene)d3d9Device[42];
 		oReset = (tReset)d3d9Device[16];
 		oPresent = (tPresent)d3d9Device[17];
 
-
-		DetourTransactionBegin();
-		DetourUpdateThread(GetCurrentThread());
-
-
 		DETOUR_ATTACH(&(PVOID&)oBeginScene, Drawing::hkBeginScene);
 		DETOUR_ATTACH(&(PVOID&)oEndScene, Drawing::hkEndScene);
 		DETOUR_ATTACH(&(PVOID&)oReset, hkReset);
 		DETOUR_ATTACH(&(PVOID&)oPresent, Drawing::hkPresent);
-
-
-		o_onDrawGameCursorOnStratAndTacticMap = (t_onDrawGameCursorOnStratAndTacticMap)offsets.onDrawGameCursorOnStratAndTacticMap;
-		DETOUR_ATTACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, Drawing::onDrawGameCursorOnStratAndTacticMap);
-
-		o_onGameDrawOnMainMenu = (t_onGameDrawOnMainMenu)offsets.onGameDrawOnMainMenu;
-		DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnMainMenu, Drawing::onGameDrawOnMainMenu);
-
-		o_onGameDrawOnLoadingScreen = (t_onGameDrawOnLoadingScreen)offsets.onGameDrawOnLoadingScreen;
-		DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnLoadingScreen, Drawing::onGameDrawOnLoadingScreen);
-
 
 		HMODULE USER32 = GetModuleHandleA("USER32.dll");
 		pSetCursorPos = (oSetCursorPos)GetProcAddress(USER32, "SetCursorPos");
@@ -178,6 +162,7 @@ void Hook::HookDirectX()
 	//	drawGameCursor = (tdrawGameCursor)0x00CD76C8; // draw cursor on strat map!!! 
 	//	DETOUR_ATTACH(&(PVOID&)drawGameCursor, Drawing::onDrawGameCursor);
 
+		Drawing::hook();
 		new_events::initNewEvents();
 		monitor_event::initGameEvents();
 		new_events::testGameEvents();
@@ -211,13 +196,10 @@ void Hook::UnHookDirectX()
 	DETOUR_DETACH(&(PVOID&)oReset, hkReset);
 	DETOUR_DETACH(&(PVOID&)oPresent, Drawing::hkPresent);
 
-	DETOUR_DETACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, Drawing::onDrawGameCursorOnStratAndTacticMap);
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnMainMenu, Drawing::onGameDrawOnMainMenu);
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnLoadingScreen, Drawing::onGameDrawOnLoadingScreen);
-
 	DETOUR_DETACH(&(PVOID&)pSetCursorPos, hkSetCursorPos);
 //	DETOUR_DETACH(&(PVOID&)drawGameCursor, Drawing::onDrawGameCursor);
 
+	Drawing::unHook();
 	new_events::deInitNewEvents();
 	monitor_event::deInitGameEvents();
 

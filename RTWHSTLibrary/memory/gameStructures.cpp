@@ -80,7 +80,7 @@ struct dipClassTest
 
 static dipClassTest* getDipStruct()
 {
-	return reinterpret_cast<dipClassTest*>(0x0165E4A4);
+	return reinterpret_cast<dipClassTest*>(offsets.dipClass);
 }
 
 void campaign::setDipStance(const DipRelEnum dipType, const factionStruct* fac1, const factionStruct* fac2)
@@ -89,7 +89,7 @@ void campaign::setDipStance(const DipRelEnum dipType, const factionStruct* fac1,
 		return;
 
 	if (dipType == Suzerain)
-		return new_events::onSetVassal((void*)0x0165e4a4, 0, fac2->dipNum, fac1->dipNum);
+		return new_events::onSetVassal((void*)offsets.dipClass, 0, fac2->dipNum, fac1->dipNum);
 
 	if (dipType == Trade)
 	{
@@ -144,7 +144,7 @@ bool campaign::checkDipStance(const DipRelEnum dipType, const factionStruct* fac
 		return state == AllianceState;
 
 	if (dipType == Suzerain)
-		return GAME_FUNC(bool(__thiscall*)(void* _this, int vassalID, int suzerainID), 0x005b2fa8)((void*)0x0165e4a4, fac2->dipNum, fac1->dipNum);	// onCheckVassal   
+		return GAME_FUNC(bool(__thiscall*)(void* _this, int vassalID, int suzerainID), 0x005b2fa8)((void*)offsets.dipClass, fac2->dipNum, fac1->dipNum);	// onCheckVassal   
 
 	return false;
 }

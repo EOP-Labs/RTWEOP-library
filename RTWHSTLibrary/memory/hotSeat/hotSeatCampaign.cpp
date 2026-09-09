@@ -666,8 +666,7 @@ void HOT_SEAT::drawPassword()
 
 
 
-//	while (qa.toggle_fow == 0)
-	while (qa.toggle_fow == 0 && startSettings.gameVersion == 1)
+	while (!qa.toggle_fow)
 	{
 #ifdef _DEBUG
 		LOG_ALWAYS(RELEASE, "while (qa.toggle_fow == 0)");
@@ -675,17 +674,8 @@ void HOT_SEAT::drawPassword()
 
 		helper_functions::callGameConsoleCommand("toggle_fow");
 
-		qa.toggle_fow      = *reinterpret_cast<int*>(offsets.toggle_fow);
-        qa.toggle_fow_pref = *reinterpret_cast<int*>(offsets.toggle_fow_pref);
-
-//		if (qa.toggle_fow_pref == 0)
-//		{
-//#ifdef _DEBUG
-//			LOG_ALWAYS(RELEASE, "if (qa.toggle_fow_pref == 0)");
-//#endif // _DEBUG
-//			int state = 1;
-//			memory::Write(&state, offsets.toggle_fow_pref, 1);
-//		}
+		qa.toggle_fow      = *reinterpret_cast<bool*>(offsets.toggle_fow);
+        qa.toggle_fow_pref = *reinterpret_cast<bool*>(offsets.toggle_fow_pref);
 	}
 
 

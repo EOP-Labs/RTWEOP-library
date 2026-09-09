@@ -51,6 +51,7 @@ struct gameOffsets
 	DWORD onCampaignMapLoaded                                 = NULL;
 	DWORD onChangeTurnNum                                     = NULL;
 	DWORD onSetVassal                                         = NULL;
+	DWORD dipClass                                            = NULL;
 	DWORD onPseudoPreFactionTurnStart                         = NULL;
 	DWORD onLoadEDU                                           = NULL;
 	DWORD onCreateCandidateMarrying                           = NULL;
@@ -296,9 +297,12 @@ struct gameOffsets
 	DWORD stratMapCursor                                      = NULL;
 	DWORD game_begin_scene                                    = NULL;
 	DWORD game_end_scene                                      = NULL;
+	DWORD begin_scene_UI                                      = NULL;
+	DWORD end_scene_UI                                        = NULL;
 	DWORD onDrawGameCursorOnStratAndTacticMap                 = NULL;
 	DWORD onGameDrawOnStratAndTacticMap                       = NULL;
 	DWORD onGameDrawOnMainMenu                                = NULL;
+	DWORD onGameDrawOnMainMenuNew                             = NULL;
 	DWORD onGameDrawOnLoadingScreen                           = NULL;
 
 	void init(int gameVer);

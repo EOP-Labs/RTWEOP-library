@@ -56,6 +56,7 @@ void gameOffsets::init(int gameVer)
 		onCampaignMapLoaded                                 = 0x00455e18;
 		onChangeTurnNum                                     = 0x0045a044;
 		onSetVassal                                         = 0x005b3bb8;
+		dipClass                                            = 0x0165E4A4;
 		onPseudoPreFactionTurnStart                         = 0x004dcb00;
 		onLoadEDU                                           = 0x008d2180;
 		onCreateCandidateMarrying                           = 0x005a3f50;
@@ -301,9 +302,12 @@ void gameOffsets::init(int gameVer)
 		stratMapCursor                                      = 0x027421B0;
 		game_begin_scene                                    = 0x00ed6d10;
 		game_end_scene                                      = 0x00ed6dc0;
+		begin_scene_UI                                      = 0x00f040b0;
+		end_scene_UI                                        = 0x00f04060;
 		onDrawGameCursorOnStratAndTacticMap                 = 0x00c87bd0;
 		onGameDrawOnStratAndTacticMap                       = 0x00f095c0;
 		onGameDrawOnMainMenu                                = 0x00924edc;
+		onGameDrawOnMainMenuNew                             = 0x00d366d4;
 		onGameDrawOnLoadingScreen                           = 0x00da62d4;
 	}
 	else if (gameVer == 2) //steam // стим версия будет "заполняться" постепенно   
@@ -326,14 +330,14 @@ void gameOffsets::init(int gameVer)
 		onKillUnitInArmy                                    = 0x0723517;
 		onKillUnit                                          = 0x007beacc;
 		onKillCharacter                                     = 0x005823b1;
-		onTeleport                                          = NULL;
-		onActionMove                                        = NULL;
-		onAttackSettlement                                  = NULL;
+		onTeleport                                          = 0x0058a7a2;
+		onActionMove                                        = 0x0058cbd0;
+		onAttackSettlement                                  = 0x00729962; //0x00729ad5
 		onAttackPort                                        = NULL;
 		onAttackFort                                        = NULL;
-		onAttackArmy                                        = NULL;
-		onUnitLeavesArmy                                    = NULL;
-		onDisembark                                         = NULL;
+		onAttackArmy                                        = 0x007297c1;
+		onUnitLeavesArmy                                    = 0x004CA459;
+		onDisembark                                         = 0x00586587;
 		onBattleStateChange                                 = NULL;
 		onBattleEnd                                         = 0x005ffb68;
 		onHistoricAndNewGameArmyLoading                     = 0x00448cbc;
@@ -343,7 +347,7 @@ void gameOffsets::init(int gameVer)
 		onMap_rwmLoaded                                     = 0x0047e828;
 		onCheckUnitBattleStatus                             = 0x007bfb0d;
 		onCharacterCreated                                  = 0x008e7989;
-		onCharacterCreated2                                 = NULL;
+		onCharacterCreated2                                 = 0x008e786a;
 		onRebelGarrisonCreated                              = 0x005b5a9f;
 		onExecuteScript                                     = 0x00b4698c;
 		onConsoleError                                      = 0x00df72d4;
@@ -354,7 +358,8 @@ void gameOffsets::init(int gameVer)
 		onNewGameStart                                      = 0x00454fa4;
 		onCampaignMapLoaded                                 = 0x00457302;
 		onChangeTurnNum                                     = 0x00455c3b;
-		onSetVassal                                         = NULL;
+		onSetVassal                                         = 0x005a34cf;//0x005a40f4
+		dipClass                                            = 0x029695fc;
 		onPseudoPreFactionTurnStart                         = 0x004ce7b1;
 		onLoadEDU                                           = 0x0091fd1c;
 		onCreateCandidateMarrying                           = 0x00593cd0;
@@ -362,10 +367,10 @@ void gameOffsets::init(int gameVer)
 		onStartFamilyRound                                  = 0x004d5b96;
 		onOpenFile                                          = 0x0040ea10;
 		onCreateUnit3                                       = NULL;
-		onCreateUnit4                                       = NULL;
+		onCreateUnit4                                       = 0x00920484;
 		onSetBattleUnitModels                               = 0x009200b2;
 		onCreateUnit2                                       = NULL;
-		onGiveUnitToArmy                                    = NULL;
+		onGiveUnitToArmy                                    = 0x00722792;
 		onCreateUnit                                        = NULL;
 		onSetBodyguardUnit                                  = NULL;
 		onCreateArmy                                        = NULL;
@@ -374,20 +379,20 @@ void gameOffsets::init(int gameVer)
 		getLocalFaction                                     = 0x00b53e1f;
 		localFactionStruct                                  = 0x0298df10;
 		stringCryptFunc                                     = 0x00e417fd;
-		setPopulation                                       = NULL;
+		setPopulation                                       = 0x005cabd3;
 		disableShortcuts1                                   = 0x00bb5336;
 		disableShortcuts2                                   = 0x029c34f8;
-		stratMap                                            = NULL;
-		createArmyInSettlement                              = NULL;
+		stratMap                                            = 0x02975e48;
+		createArmyInSettlement                              = 0x005bc3ad;
 		onAttachRegionSettlement                            = 0x00483d70;
 		onTransitionToBattleFromStratMap                    = 0x008ce1b3;
 		transitionToMapView                                 = 0x00b73f4f;
 		transitionToMapView2                                = 0x00188980;
-		toggle_fow                                          = NULL;
-		toggle_fow_pref                                     = NULL;
+		toggle_fow                                          = 0x029692F4;
+		toggle_fow_pref                                     = 0x0126d2fe;
 		onSetPreBattleWithdrawal                            = 0x005fedbd;
-		onBattleInstigate                                   = NULL;
-		neverWithdraw                                       = NULL;
+		onBattleInstigate                                   = 0x005f88fb;
+		neverWithdraw                                       = 0x005F9E1D;//0x005f9e17
 		onBuildingCaptured                                  = 0x00cbfa81;
 		///monitor_event.cpp
 		onFactionTurnStart                                  = 0x008a8f94;
@@ -567,9 +572,9 @@ void gameOffsets::init(int gameVer)
 		onReadDescrSmFactions                               = NULL;
 		onGetUniStringFromData                              = NULL;
 		FUN_00ece3c0                                        = NULL;
-		onAttachRegion                                      = NULL;
-		onAttachRegionFaction                               = NULL;
-		onGetInstance                                       = NULL;
+		onAttachRegion                                      = 0x004d29dc;
+		onAttachRegionFaction                               = 0x00484fb2;
+		onGetInstance                                       = 0x00413d0d;
 		onGetFactionByID                                    = 0x00456efe;
 		onHasTradeRights                                    = NULL;
 		onCampaignMapSaved                                  = NULL;
@@ -600,9 +605,12 @@ void gameOffsets::init(int gameVer)
 		stratMapCursor                                      = 0x29C74F0;
 		game_begin_scene                                    = 0x00f4be40;
 		game_end_scene                                      = 0x00f4bef0;
+		begin_scene_UI                                      = 0x00f78a70;
+		end_scene_UI                                        = 0x00f78a20;
 		onDrawGameCursorOnStratAndTacticMap                 = 0x00cd4acb;
 		onGameDrawOnStratAndTacticMap                       = 0x00f7e020;
 		onGameDrawOnMainMenu                                = 0x009749fb;
+		onGameDrawOnMainMenuNew                             = 0x00da07f9;
 		onGameDrawOnLoadingScreen                           = NULL;
 	}
 }

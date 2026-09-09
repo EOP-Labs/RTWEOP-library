@@ -12,7 +12,41 @@ BOOL   Drawing::bInit       = FALSE;    // Status of the initialization of ImGui
 bool   Drawing::bDisplay    = true;     // Status of the menu display.
 ImVec2 Drawing::vWindowPos  = { 0, 0 }; // Last ImGui window position.
 ImVec2 Drawing::vWindowSize = { 0, 0 }; // Last ImGui window size.
+bool   Drawing::isStartDraw = false;
 
+Drawing::t_onDrawGameCursorOnStratAndTacticMap Drawing::o_onDrawGameCursorOnStratAndTacticMap = nullptr;
+Drawing::t_onGameDrawOnMainMenu                Drawing::o_onGameDrawOnMainMenu                = nullptr;
+Drawing::t_onGameDrawOnLoadingScreen           Drawing::o_onGameDrawOnLoadingScreen           = nullptr;
+Drawing::t_onGameDrawOnStratAndTacticMap       Drawing::o_onGameDrawOnStratAndTacticMap       = nullptr;
+Drawing::t_onGameDrawOnMainMenuNew             Drawing::o_onGameDrawOnMainMenuNew             = nullptr;
+
+
+void Drawing::hook()
+{
+	o_onDrawGameCursorOnStratAndTacticMap = (t_onDrawGameCursorOnStratAndTacticMap)offsets.onDrawGameCursorOnStratAndTacticMap;
+	DETOUR_ATTACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, onDrawGameCursorOnStratAndTacticMap);
+
+	o_onGameDrawOnStratAndTacticMap = (t_onGameDrawOnStratAndTacticMap)offsets.onGameDrawOnStratAndTacticMap;
+	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
+
+	o_onGameDrawOnMainMenuNew = (t_onGameDrawOnMainMenuNew)offsets.onGameDrawOnMainMenuNew;
+	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnMainMenuNew, onGameDrawOnMainMenuNew);
+
+	o_onGameDrawOnMainMenu = (t_onGameDrawOnMainMenu)offsets.onGameDrawOnMainMenu;
+	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnMainMenu, onGameDrawOnMainMenu);
+
+	o_onGameDrawOnLoadingScreen = (t_onGameDrawOnLoadingScreen)offsets.onGameDrawOnLoadingScreen;
+	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnLoadingScreen, onGameDrawOnLoadingScreen);
+}
+
+void Drawing::unHook()
+{
+	DETOUR_DETACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, onDrawGameCursorOnStratAndTacticMap);
+	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
+	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnMainMenuNew, onGameDrawOnMainMenuNew);
+	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnMainMenu, onGameDrawOnMainMenu);
+	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnLoadingScreen, onGameDrawOnLoadingScreen);
+}
 
 HRESULT Drawing::hkBeginScene(const LPDIRECT3DDEVICE9 D3D9Device)
 {
@@ -32,26 +66,24 @@ HRESULT __fastcall Drawing::onDrawGameCursor(void* _this, int stub)
 }
 
 //////////////////////////////////////////////////////////////////////
-// render на страт карте и тактике   
+// Рендер курсора   
 void __fastcall Drawing::onDrawGameCursorOnStratAndTacticMap(int param_1)
 {
 //	Hook::o_onDrawGameCursorOnStratAndTacticMap(param_1);
-
 //	if (offsets.stratMapCursor == param_1 + 0x90)
 
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = true;
 	draw();
 }
 
-bool isGameWindowDraw = false;
 //////////////////////////////////////////////////////////////////////
 // render в главном меню   
-HRESULT __fastcall Drawing::onGameDrawOnMainMenu(void* _this, int stub, char** name, undefined4 param_3, float* param_4)
+int __fastcall Drawing::onGameDrawOnMainMenu(void* _this, int stub, char** name, undefined4 param_3, float* param_4)
 {
 	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnMainMenu");
-	isGameWindowDraw = true;
+	isStartDraw = true;
 
-	HRESULT result = Hook::o_onGameDrawOnMainMenu(_this, stub, name, param_3, param_4);
+	int result = o_onGameDrawOnMainMenu(_this, stub, name, param_3, param_4);
 
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = false;
 	draw();
@@ -61,73 +93,51 @@ HRESULT __fastcall Drawing::onGameDrawOnMainMenu(void* _this, int stub, char** n
 
 //////////////////////////////////////////////////////////////////////
 // Загрузка рендер 2   
-HRESULT __fastcall Drawing::onGameDrawOnLoadingScreen(void* _this, int* param_1, int param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)
+void __fastcall Drawing::onGameDrawOnLoadingScreen(void* _this, int* param_1, int param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)
 {
-	HRESULT result = Hook::o_onGameDrawOnLoadingScreen(_this, param_1, param_2, param_3, param_4, param_5);
+	o_onGameDrawOnLoadingScreen(_this, param_1, param_2, param_3, param_4, param_5);
 
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = false;
 	draw();
-
-	return result;
 }
 
-#ifdef TEST_STEAM_DRAW
-#include "differentFunctions/dm_assert.h"
-bool DISABLE_DRAW = true;
-bool isDrawSteamMenu = false;
-static void test_steam_draw()
+// render на страт карте и тактике   
+void __cdecl Drawing::onGameDrawOnStratAndTacticMap(int param_1)
 {
-	if (ImGui::IsKeyPressed(ImGuiKey_GraveAccent) && ImGui::IsKeyDown(ImGuiKey_LeftCtrl))
+	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnStratAndTacticMap");
+
+	if (!isStartDraw)
 	{
-		isDrawSteamMenu = !isDrawSteamMenu;
-	}
-	if (!isDrawSteamMenu) return;
-
-
-	ImGui::SetNextWindowPos({ 0,0 }, ImGuiCond_Always);
-	DWORD dwFlag = ImGuiWindowFlags_None;
-	ImGui::SetNextWindowSize(ImVec2(450.0f, 400.0f), ImGuiCond_Once);
-	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.9f);
-	string hsName = desTab.currHotSeat + startSettings.mainHotSeat;
-	ImGui::Begin(hsName.c_str(), &isDrawSteamMenu, dwFlag);
-	ImGui::PopStyleVar(1);
-	ImGui::Separator();
-
-	if (ImGui::Button("TEST"))
-	{
-		ImGui::InsertNotification({ ImGuiToastType_Success, 3000, "TEST" });
+		return o_onGameDrawOnStratAndTacticMap(param_1);
 	}
 
-	ImGui::Separator();
-	ImGui::End();
+	if (HOT_SEAT_CAMPAIGN.m_is_strat_map_draw &&
+		GAME_FUNC(bool(__cdecl*)(), offsets.begin_scene_UI)()) {
+		draw();
+		o_onDrawGameCursorOnStratAndTacticMap(offsets.stratMapCursor - 0x90);
+		GAME_FUNC(void(__cdecl*)(), offsets.end_scene_UI)(); 
+	}
+
+	o_onGameDrawOnStratAndTacticMap(param_1);
 }
-#endif // TEST_STEAM_DRAW
+
+// render в главном меню - новый   
+void __fastcall Drawing::onGameDrawOnMainMenuNew(int param_1)
+{
+	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnMainMenuNew");
+	o_onGameDrawOnMainMenuNew(param_1);
+	draw();
+}
 
 void Drawing::draw()
 {
-#ifdef TEST_STEAM_DRAW
-	if (DISABLE_DRAW)
-		return;
-#endif // TEST_STEAM_DRAW
-
-
 	ImGui_ImplDX9_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
 	if (bDisplay)
 	{
-	//	if (startSettings.gameVersion == 2)// если это Steam версия, то только битвы - временно   
-	//	{
-	//		battle_create::drawBattle();
-	//	#ifdef TEST_STEAM_DRAW
-	//		test_steam_draw();
-	//	#endif // TEST_STEAM_DRAW
-	//	}
-	//	else
-	//	{
-			draw_main();
-	//	}
+		draw_main();
 	}
 
 	// Render toasts on top of everything, at the end of your code!

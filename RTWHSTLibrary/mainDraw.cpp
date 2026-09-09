@@ -1214,100 +1214,12 @@ void __fastcall transitionToMapView(void* _this, int stub, unsigned int x, unsig
     log_always("transitionToMapView()");
 }
 
-
-
-static void newDraw()
-{
-    ImGui_ImplDX9_NewFrame();
-    ImGui_ImplWin32_NewFrame();
-    ImGui::NewFrame();
-
-    if (Drawing::bDisplay)
-    {
-        draw_main();
-    }
-
-    // Render toasts on top of everything, at the end of your code!
-    // You should push style vars here
-    ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.9f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.f);
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(43.f / 255.f, 43.f / 255.f, 43.f / 255.f, 100.f / 255.f));
-    ImGui::RenderNotifications();
-    ImGui::PopStyleVar(2); // Don't forget to Pop()
-    ImGui::PopStyleColor(1);
-
-    ImGuiIO& io = ImGui::GetIO();
-    gameWindow.mouseAtImgui = io.WantCaptureMouse;
-    gameWindow.mouseAtImgui |= io.WantCaptureKeyboard;
-//  io.MouseDrawCursor = gameWindow.mouseAtImgui && startSettings.gameVersion == 2;
-
-    ImGui::EndFrame();
-    ImGui::Render();
-    ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
-
-    if (gameWindow.texturesForDeleting.size())
-    {
-        for (auto tex : gameWindow.texturesForDeleting)
-        {
-            tex->Release();
-        }
-        gameWindow.texturesForDeleting.clear();
-    }
-}
-
-bool DEBUG_INFO = false;
-using t_onGameDrawOnStratAndTacticMap = void(__cdecl*)(int param_1);
-t_onGameDrawOnStratAndTacticMap o_onGameDrawOnStratAndTacticMap = nullptr;
-void __cdecl onGameDrawOnStratAndTacticMap(int param_1)
-{
-    LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnStratAndTacticMap");
-
-    if (isGameWindowDraw)
-    {
-//      newDraw();
-        if (HOT_SEAT_CAMPAIGN.m_is_strat_map_draw && 
-            GAME_FUNC(bool(__cdecl*)(), startSettings.gameVersion == 1 ? 0x00f040b0 : 0x00f78a70)())/*begin_scene_UI*/ {
-            Drawing::draw();
-            Hook::o_onDrawGameCursorOnStratAndTacticMap(offsets.stratMapCursor - 0x90);
-            GAME_FUNC(void(__cdecl*)(), startSettings.gameVersion == 1 ? 0x00f04060 : 0x00f78a20)();//end_scene_UI 
-        }
-    }
-
-    o_onGameDrawOnStratAndTacticMap(param_1);
-
-//  if (DEBUG_INFO && 
-//      GAME_FUNC(bool(__cdecl*)(bool, bool), offsets.game_begin_scene)(false, false))/*begin_scene_UI*/ {
-//      GAME_FUNC(void(__cdecl*)(), startSettings.gameVersion == 1 ? 0x00d8773c : 0x00df574a)();//draw debug info 
-//      GAME_FUNC(bool(__cdecl*)(), offsets.game_end_scene)();//end_scene_UI 
-//  }
-}
-
-
-//DRAW MAIN MENU 
-//void __fastcall UndefinedFunction_00d366d4(int param_1)
-using t_FUN_00d366d4 = void(__fastcall*)(int param_1);
-t_FUN_00d366d4 o_FUN_00d366d4 = nullptr;
-void __fastcall FUN_00d366d4(int param_1)
-{
-    LOG_ALWAYS(BUGTEST, "Drawing::FUN_00d366d4");
-    o_FUN_00d366d4(param_1);
-    newDraw();
-}
-
-
 using t_FUN_00a326e0 = bool(__fastcall*)(int param_1);
 t_FUN_00a326e0 o_FUN_00a326e0 = nullptr;
 bool __fastcall FUN_00a326e0(int param_1)
 {
     return o_FUN_00a326e0(param_1);
 }
-/*
-DRAW DEBUG INFO
-1529620 + 0x1ed = 152980D - disk
-17AFEF8 + 0x1ed = 17B00E5 - steam
-if (*(char *)(param_1 + 0x1ed) != '\0') {
-*/
-
 
 #endif // TEST_STEAM_DRAW
 
@@ -1484,29 +1396,6 @@ void new_events::testGameEvents()
     //ФИКС ДЛЯ ХОТ-СИТ КАМПАНИИ - непонятный вылет при выгрузке карты кампании.   
     o_FUN_004a9634 = (t_FUN_004a9634)offsets.FUN_004a9634;
 	DETOUR_ATTACH(&(PVOID&)o_FUN_004a9634, FUN_004a9634);
-
-
-
-#ifdef TEST_STEAM_DRAW
-//	o_FUN_00b91e04 = (t_FUN_00b91e04)(DWORD)offsets.disableShortcuts1;
-//	DetourAttach(&(PVOID&)o_FUN_00b91e04, FUN_00b91e04);
-
-//	o_onGetLocalFaction = (t_onGetLocalFaction)(DWORD)offsets.getLocalFaction;
-//	DetourAttach(&(PVOID&)o_onGetLocalFaction, onGetLocalFaction);
-
-//  o_transitionToMapView = (t_transitionToMapView)(DWORD)offsets.transitionToMapView;
-//	DetourAttach(&(PVOID&)o_transitionToMapView, transitionToMapView);
-
-    o_onGameDrawOnStratAndTacticMap = (t_onGameDrawOnStratAndTacticMap)(DWORD)offsets.onGameDrawOnStratAndTacticMap;
-    DetourAttach(&(PVOID&)o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
-
-    o_FUN_00d366d4 = (t_FUN_00d366d4)(DWORD)(startSettings.gameVersion == 1 ? 0x00d366d4 : 0x00da07f9);
-    DetourAttach(&(PVOID&)o_FUN_00d366d4, FUN_00d366d4);
-
-//  o_FUN_00a326e0 = (t_FUN_00a326e0)(startSettings.gameVersion == 1 ? 0x00a326e0 : 0x00a94133);//
-//  DETOUR_ATTACH(&(PVOID&)o_FUN_00a326e0, FUN_00a326e0);
-#endif // TEST_STEAM_DRAW
-
 }
 
 
@@ -1633,6 +1522,8 @@ static struct helperMenu
     namedCharacter* targetSelectGeneral = NULL;
     int xTargetCoord, yTargetCoord;
 
+    bool enableDebugInfo                = false;
+
     helperMenu() :
         inputConsole                    (""),
         inputScript                     (""),
@@ -1653,7 +1544,9 @@ static struct helperMenu
 
         targetSelectGeneral             (NULL),
         xTargetCoord                    (0),
-        yTargetCoord                    (0)
+        yTargetCoord                    (0),
+
+        enableDebugInfo                 (false)
     {
     }
 
@@ -1727,7 +1620,6 @@ void draw_main()
     ImGui::SameLine();
     ImGui::TextColored(ImColor(208, 206, 92, 255), coordsStr.c_str());
 
-#if _DEBUG
     if (gameCursor)
     {
         string coordsMStr = to_string(gameCursor->previousPosition.xCoord) + ", " + to_string(gameCursor->previousPosition.yCoord);
@@ -1735,8 +1627,6 @@ void draw_main()
         ImGui::SameLine();
         ImGui::TextColored(ImColor(208, 206, 92, 255), coordsMStr.c_str());
     }
-#endif
-
     if (!gameWindow.mouseAtImgui && coordsStr != "null, null" && ImGui::IsMouseClicked(0))
     {
         helper.coordsClick = to_string(qa.xLocCoord) + ", " + to_string(qa.yLocCoord);
@@ -1770,6 +1660,18 @@ void draw_main()
                 killPMOpercent(10.0f);
     		}
     	}
+    }
+    if (ImGui::Checkbox(u8"enableDebugInfo", &helper.enableDebugInfo))
+    {
+        LOG_ALWAYS(BUGTEST, "enableDebugInfo: " + boolStr(helper.enableDebugInfo));
+        /*
+        DRAW DEBUG INFO
+        1529620 + 0x1ed = 152980D - disk
+        17AFEF8 + 0x1ed = 17B00E5 - steam
+        if (*(char *)(param_1 + 0x1ed) != '\0') {
+        */
+        const DWORD address = startSettings.gameVersion == 1 ? 0x152980D : 0x17B00E5;
+        memory::Write(&helper.enableDebugInfo, address, 1);
     }
     ImGui::Separator();
     
