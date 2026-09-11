@@ -44,7 +44,6 @@ public:
 private:
 	static ImVec2 vWindowPos;
 	static ImVec2 vWindowSize;
-	static bool isStartDraw;
 
 	static void InitImGui(LPDIRECT3DDEVICE9 pDevice);
 };

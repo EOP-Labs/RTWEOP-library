@@ -44,8 +44,8 @@ namespace memory
 }
 
 #define GET_VARIABLE_NAME(Variable) (#Variable)
-#define DETOUR_ATTACH(ppPointer, pDetour) memory::detourAttach(ppPointer, pDetour, GET_VARIABLE_NAME(pDetour))
-#define DETOUR_DETACH(ppPointer, pDetour) memory::detourDetach(ppPointer, pDetour, GET_VARIABLE_NAME(pDetour))
+#define DETOUR_ATTACH(ppPointer, pDetour) memory::detourAttach(&(PVOID&)ppPointer, pDetour, GET_VARIABLE_NAME(pDetour))
+#define DETOUR_DETACH(ppPointer, pDetour) memory::detourDetach(&(PVOID&)ppPointer, pDetour, GET_VARIABLE_NAME(pDetour))
 
 
 

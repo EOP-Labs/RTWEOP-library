@@ -80,188 +80,188 @@ namespace new_events
 
     void initNewEvents()
     {
-        LOG_ALWAYS(RELEASE, "initNewEvents()");
+        LOG_ALWAYS(RELEASE, "new_events::initNewEvents()");
 
 
         o_onGameInit = (t_onGameInit)offsets.onGameInit;
-        DETOUR_ATTACH(&(PVOID&)o_onGameInit, onGameInit);
+        DETOUR_ATTACH(o_onGameInit, onGameInit);
 
         o_onReadEDU = (t_onReadEDU)offsets.onReadEDU;
-        DETOUR_ATTACH(&(PVOID&)o_onReadEDU, onReadEDU);
+        DETOUR_ATTACH(o_onReadEDU, onReadEDU);
 
         o_onGetUnitFormationString = (t_onGetUnitFormationString)offsets.onGetUnitFormationString;
-        DETOUR_ATTACH(&(PVOID&)o_onGetUnitFormationString, onGetUnitFormationString);
+        DETOUR_ATTACH(o_onGetUnitFormationString, onGetUnitFormationString);
 
         o_onAutosave = (t_onAutosave)offsets.onAutosave;
-        DETOUR_ATTACH(&(PVOID&)o_onAutosave, onAutosave);
+        DETOUR_ATTACH(o_onAutosave, onAutosave);
 
         o_onQuickLoading = (t_onQuickLoading)offsets.onQuickLoading;
-        DETOUR_ATTACH(&(PVOID&)o_onQuickLoading, onQuickLoading);
+        DETOUR_ATTACH(o_onQuickLoading, onQuickLoading);
 
         o_onSaveCreate = (t_onSaveCreate)offsets.onSaveCreate;
-        DETOUR_ATTACH(&(PVOID&)o_onSaveCreate, onSaveCreate);
+        DETOUR_ATTACH(o_onSaveCreate, onSaveCreate);
 
         o_onSaveLoad = (t_onSaveLoad)offsets.onSaveLoad;
-        DETOUR_ATTACH(&(PVOID&)o_onSaveLoad, onSaveLoad);
+        DETOUR_ATTACH(o_onSaveLoad, onSaveLoad);
 
         o_onKillFaction = (t_onKillFaction)offsets.onKillFaction;
-        DETOUR_ATTACH(&(PVOID&)o_onKillFaction, onKillFaction);
+        DETOUR_ATTACH(o_onKillFaction, onKillFaction);
 
         o_onKillUnitInArmy = (t_onKillUnitInArmy)offsets.onKillUnitInArmy;
-        DETOUR_ATTACH(&(PVOID&)o_onKillUnitInArmy, onKillUnitInArmy);
+        DETOUR_ATTACH(o_onKillUnitInArmy, onKillUnitInArmy);
 
         o_onKillUnit = (t_onKillUnit)offsets.onKillUnit;
-        DETOUR_ATTACH(&(PVOID&)o_onKillUnit, onKillUnit);
+        DETOUR_ATTACH(o_onKillUnit, onKillUnit);
 
         o_onKillCharacter = (t_onKillCharacter)offsets.onKillCharacter;
-        DETOUR_ATTACH(&(PVOID&)o_onKillCharacter, onKillCharacter);
+        DETOUR_ATTACH(o_onKillCharacter, onKillCharacter);
 
         o_onReposition = (t_onTeleport)offsets.onTeleport;
-        DETOUR_ATTACH(&(PVOID&)o_onReposition, onTeleport);
+        DETOUR_ATTACH(o_onReposition, onTeleport);
 
         o_onActionMove = (t_onActionMove)offsets.onActionMove;
-        DETOUR_ATTACH(&(PVOID&)o_onActionMove, onActionMove);
+        DETOUR_ATTACH(o_onActionMove, onActionMove);
 
         o_onAttackSettlement = (t_onAttackSettlement)offsets.onAttackSettlement;
-        DETOUR_ATTACH(&(PVOID&)o_onAttackSettlement, onAttackSettlement);
+        DETOUR_ATTACH(o_onAttackSettlement, onAttackSettlement);
 
         o_onAttackPort = (t_onAttackPort)offsets.onAttackPort;
-        DETOUR_ATTACH(&(PVOID&)o_onAttackPort, onAttackPort);
+        DETOUR_ATTACH(o_onAttackPort, onAttackPort);
 
         o_onAttackFort = (t_onAttackFort)offsets.onAttackFort;
-        DETOUR_ATTACH(&(PVOID&)o_onAttackFort, onAttackFort);
+        DETOUR_ATTACH(o_onAttackFort, onAttackFort);
 
         o_onAttackArmy = (t_onAttackArmy)offsets.onAttackArmy;
-        DETOUR_ATTACH(&(PVOID&)o_onAttackArmy, onAttackArmy);
+        DETOUR_ATTACH(o_onAttackArmy, onAttackArmy);
 
         o_onUnitLeavesArmy = (t_onUnitLeavesArmy)offsets.onUnitLeavesArmy;
-        DETOUR_ATTACH(&(PVOID&)o_onUnitLeavesArmy, onUnitLeavesArmy);
+        DETOUR_ATTACH(o_onUnitLeavesArmy, onUnitLeavesArmy);
 
         o_onDisembark = (t_onDisembark)offsets.onDisembark;
-        DETOUR_ATTACH(&(PVOID&)o_onDisembark, onDisembark);
+        DETOUR_ATTACH(o_onDisembark, onDisembark);
 
         o_onBattleStateChange = (t_onBattleStateChange)offsets.onBattleStateChange;
-        DETOUR_ATTACH(&(PVOID&)o_onBattleStateChange, onBattleStateChange);
+        DETOUR_ATTACH(o_onBattleStateChange, onBattleStateChange);
 
         o_onBattleEnd = (t_onBattleEnd)offsets.onBattleEnd;
-        DETOUR_ATTACH(&(PVOID&)o_onBattleEnd, onBattleEnd);
+        DETOUR_ATTACH(o_onBattleEnd, onBattleEnd);
 
         o_onHistoricAndNewGameArmyLoading = (t_onHistoricAndNewGameArmyLoading)offsets.onHistoricAndNewGameArmyLoading;
-        DETOUR_ATTACH(&(PVOID&)o_onHistoricAndNewGameArmyLoading, onHistoricAndNewGameArmyLoading);
+        DETOUR_ATTACH(o_onHistoricAndNewGameArmyLoading, onHistoricAndNewGameArmyLoading);
 
         o_onBeginSiege = (t_onBeginSiege)offsets.onBeginSiege;
-        DETOUR_ATTACH(&(PVOID&)o_onBeginSiege, onBeginSiege);
+        DETOUR_ATTACH(o_onBeginSiege, onBeginSiege);
 
         o_onHistoricBattleAndNewGameLoading = (t_onHistoricBattleAndNewGameLoading)offsets.onHistoricBattleAndNewGameLoading;
-        DETOUR_ATTACH(&(PVOID&)o_onHistoricBattleAndNewGameLoading, onHistoricBattleAndNewGameLoading);
+        DETOUR_ATTACH(o_onHistoricBattleAndNewGameLoading, onHistoricBattleAndNewGameLoading);
 
         o_getRegionByCoords = (t_getRegionByCoords)offsets.getRegionByCoords;
-        DETOUR_ATTACH(&(PVOID&)o_getRegionByCoords, getRegionByCoords);
+        DETOUR_ATTACH(o_getRegionByCoords, getRegionByCoords);
 
         o_onMap_rwmLoaded = (t_onMap_rwmLoaded)offsets.onMap_rwmLoaded;
-        DETOUR_ATTACH(&(PVOID&)o_onMap_rwmLoaded, onMap_rwmLoaded);
+        DETOUR_ATTACH(o_onMap_rwmLoaded, onMap_rwmLoaded);
 
         o_onCheckUnitBattleStatus = (t_onCheckUnitBattleStatus)offsets.onCheckUnitBattleStatus;
-        DETOUR_ATTACH(&(PVOID&)o_onCheckUnitBattleStatus, onCheckUnitBattleStatus);
+        DETOUR_ATTACH(o_onCheckUnitBattleStatus, onCheckUnitBattleStatus);
 
         o_onCharacterCreated = (t_onCharacterCreated)offsets.onCharacterCreated;
-        DETOUR_ATTACH(&(PVOID&)o_onCharacterCreated, onCharacterCreated);
+        DETOUR_ATTACH(o_onCharacterCreated, onCharacterCreated);
 
         o_onCharacterCreated2 = (t_onCharacterCreated2)offsets.onCharacterCreated2;
-        DETOUR_ATTACH(&(PVOID&)o_onCharacterCreated2, onCharacterCreated2);
+        DETOUR_ATTACH(o_onCharacterCreated2, onCharacterCreated2);
 
         o_onRebelGarrisonCreated = (t_onRebelGarrisonCreated)offsets.onRebelGarrisonCreated;
-        DETOUR_ATTACH(&(PVOID&)o_onRebelGarrisonCreated, onRebelGarrisonCreated);
+        DETOUR_ATTACH(o_onRebelGarrisonCreated, onRebelGarrisonCreated);
 
         o_onExecuteScript = (t_onExecuteScript)offsets.onExecuteScript;
-        DETOUR_ATTACH(&(PVOID&)o_onExecuteScript, onExecuteScript);
+        DETOUR_ATTACH(o_onExecuteScript, onExecuteScript);
 
         o_onConsoleError = (t_onConsoleError)offsets.onConsoleError;
-        DETOUR_ATTACH(&(PVOID&)o_onConsoleError, onConsoleError);
+        DETOUR_ATTACH(o_onConsoleError, onConsoleError);
 
         o_onConsoleExecute = (t_onConsoleExecute)offsets.onConsoleExecute;
-        DETOUR_ATTACH(&(PVOID&)o_onConsoleExecute, onConsoleExecute);
+        DETOUR_ATTACH(o_onConsoleExecute, onConsoleExecute);
 
         o_onCreateScriptFromFile = (t_onCreateScriptFromFile)offsets.onCreateScriptFromFile;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateScriptFromFile, onCreateScriptFromFile);
+        DETOUR_ATTACH(o_onCreateScriptFromFile, onCreateScriptFromFile);
 
         o_onCreateAllScripts = (t_onCreateAllScripts)offsets.onCreateAllScripts;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateAllScripts, onCreateAllScripts);
+        DETOUR_ATTACH(o_onCreateAllScripts, onCreateAllScripts);
 
         o_onCreateDescrFile = (t_onCreateDescrFile)offsets.onCreateDescrFile;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateDescrFile, onCreateDescrFile);
+        DETOUR_ATTACH(o_onCreateDescrFile, onCreateDescrFile);
 
         o_onNewGameStart = (t_onNewGameStart)offsets.onNewGameStart;
-        DETOUR_ATTACH(&(PVOID&)o_onNewGameStart, onNewGameStart);
+        DETOUR_ATTACH(o_onNewGameStart, onNewGameStart);
 
         o_onCampaignMapLoaded = (t_onCampaignMapLoaded)offsets.onCampaignMapLoaded;
-        DETOUR_ATTACH(&(PVOID&)o_onCampaignMapLoaded, onCampaignMapLoaded);
+        DETOUR_ATTACH(o_onCampaignMapLoaded, onCampaignMapLoaded);
 
         o_onChangeTurnNum = (t_onChangeTurnNum)offsets.onChangeTurnNum;
-        DETOUR_ATTACH(&(PVOID&)o_onChangeTurnNum, onChangeTurnNum);
+        DETOUR_ATTACH(o_onChangeTurnNum, onChangeTurnNum);
 
         o_onSetVassal = (t_onSetVassal)offsets.onSetVassal;
-        DETOUR_ATTACH(&(PVOID&)o_onSetVassal, onSetVassal);
+        DETOUR_ATTACH(o_onSetVassal, onSetVassal);
 
         o_onPseudoPreFactionTurnStart = (t_onPseudoPreFactionTurnStart)offsets.onPseudoPreFactionTurnStart;
-        DETOUR_ATTACH(&(PVOID&)o_onPseudoPreFactionTurnStart, onPseudoPreFactionTurnStart);
+        DETOUR_ATTACH(o_onPseudoPreFactionTurnStart, onPseudoPreFactionTurnStart);
 
         o_onLoadEDU = (t_onLoadEDU)offsets.onLoadEDU;
-        DETOUR_ATTACH(&(PVOID&)o_onLoadEDU, onLoadEDU);
+        DETOUR_ATTACH(o_onLoadEDU, onLoadEDU);
 
         o_onCreateCandidateMarrying = (t_onCreateCandidateMarrying)offsets.onCreateCandidateMarrying;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateCandidateMarrying, onCreateCandidateMarrying);
+        DETOUR_ATTACH(o_onCreateCandidateMarrying, onCreateCandidateMarrying);
 
         o_onDaughterReadyMarryHusband = (t_onDaughterReadyMarryHusband)offsets.onDaughterReadyMarryHusband;
-        DETOUR_ATTACH(&(PVOID&)o_onDaughterReadyMarryHusband, onDaughterReadyMarryHusband);
+        DETOUR_ATTACH(o_onDaughterReadyMarryHusband, onDaughterReadyMarryHusband);
 
         o_onStartFamilyRound = (t_onStartFamilyRound)offsets.onStartFamilyRound;
-        DETOUR_ATTACH(&(PVOID&)o_onStartFamilyRound, onStartFamilyRound);
+        DETOUR_ATTACH(o_onStartFamilyRound, onStartFamilyRound);
 
         o_onTransitionToBattleFromStratMap = (t_onTransitionToBattleFromStratMap)offsets.onTransitionToBattleFromStratMap;
-        DETOUR_ATTACH(&(PVOID&)o_onTransitionToBattleFromStratMap, onTransitionToBattleFromStratMap);
+        DETOUR_ATTACH(o_onTransitionToBattleFromStratMap, onTransitionToBattleFromStratMap);
 
         o_onOpenFile = (t_onOpenFile)offsets.onOpenFile;
-        DETOUR_ATTACH(&(PVOID&)o_onOpenFile, onOpenFile);
+        DETOUR_ATTACH(o_onOpenFile, onOpenFile);
 
         o_onCreateUnit3 = (t_onCreateUnit3)offsets.onCreateUnit3;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateUnit3, onCreateUnit3);
+        DETOUR_ATTACH(o_onCreateUnit3, onCreateUnit3);
 
         o_onCreateUnit4 = (t_onCreateUnit4)offsets.onCreateUnit4;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateUnit4, onCreateUnit4);
+        DETOUR_ATTACH(o_onCreateUnit4, onCreateUnit4);
 
         o_onSetBattleUnitModels = (t_onSetBattleUnitModels)offsets.onSetBattleUnitModels;
-        DETOUR_ATTACH(&(PVOID&)o_onSetBattleUnitModels, onSetBattleUnitModels);
+        DETOUR_ATTACH(o_onSetBattleUnitModels, onSetBattleUnitModels);
 
         o_onCreateUnit2 = (t_onCreateUnit2)offsets.onCreateUnit2;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateUnit2, onCreateUnit2);
+        DETOUR_ATTACH(o_onCreateUnit2, onCreateUnit2);
 
         o_onGiveUnitToArmy = (t_onGiveUnitToArmy)offsets.onGiveUnitToArmy;
-        DETOUR_ATTACH(&(PVOID&)o_onGiveUnitToArmy, onGiveUnitToArmy);
+        DETOUR_ATTACH(o_onGiveUnitToArmy, onGiveUnitToArmy);
 
         o_onCreateUnit = (t_onCreateUnit)offsets.onCreateUnit;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateUnit, onCreateUnit);
+        DETOUR_ATTACH(o_onCreateUnit, onCreateUnit);
 
         o_onSetBodyguardUnit = (t_onSetBodyguardUnit)offsets.onSetBodyguardUnit;
-        DETOUR_ATTACH(&(PVOID&)o_onSetBodyguardUnit, onSetBodyguardUnit);
+        DETOUR_ATTACH(o_onSetBodyguardUnit, onSetBodyguardUnit);
 
         o_onCreateArmy = (t_onCreateArmy)offsets.onCreateArmy;
-        DETOUR_ATTACH(&(PVOID&)o_onCreateArmy, onCreateArmy);
+        DETOUR_ATTACH(o_onCreateArmy, onCreateArmy);
 
         o_onRestorePointers = (t_onRestorePointers)offsets.onRestorePointers;
-        DETOUR_ATTACH(&(PVOID&)o_onRestorePointers, onRestorePointers);
+        DETOUR_ATTACH(o_onRestorePointers, onRestorePointers);
 
         o_onAttachRegionSettlement = (t_onAttachRegionSettlement)offsets.onAttachRegionSettlement;
-        DETOUR_ATTACH(&(PVOID&)o_onAttachRegionSettlement, onAttachRegionSettlement);
+        DETOUR_ATTACH(o_onAttachRegionSettlement, onAttachRegionSettlement);
 
         o_onSetPreBattleWithdrawal = (t_onSetPreBattleWithdrawal)offsets.onSetPreBattleWithdrawal;
-        DETOUR_ATTACH(&(PVOID&)o_onSetPreBattleWithdrawal, onSetPreBattleWithdrawal);
+        DETOUR_ATTACH(o_onSetPreBattleWithdrawal, onSetPreBattleWithdrawal);
 
         o_onBattleInstigate = (t_onBattleInstigate)offsets.onBattleInstigate;
-        DETOUR_ATTACH(&(PVOID&)o_onBattleInstigate, onBattleInstigate);
+        DETOUR_ATTACH(o_onBattleInstigate, onBattleInstigate);
 
         o_onBuildingCaptured = (t_onBuildingCaptured)offsets.onBuildingCaptured;
-        DETOUR_ATTACH(&(PVOID&)o_onBuildingCaptured, onBuildingCaptured);
+        DETOUR_ATTACH(o_onBuildingCaptured, onBuildingCaptured);
 
 
         saveFiles.deleteAll();
@@ -270,69 +270,69 @@ namespace new_events
 
     void deInitNewEvents()
     {
-        LOG_ALWAYS(RELEASE, "deInitNewEvents()");
+        LOG_ALWAYS(RELEASE, "new_events::deInitNewEvents()");
 
 
-        DETOUR_DETACH(&(PVOID&)o_onGameInit, onGameInit);
-        DETOUR_DETACH(&(PVOID&)o_onReadEDU, onReadEDU);
-        DETOUR_DETACH(&(PVOID&)o_onGetUnitFormationString, onGetUnitFormationString);
-        DETOUR_DETACH(&(PVOID&)o_onAutosave, onAutosave);
-        DETOUR_DETACH(&(PVOID&)o_onQuickLoading, onQuickLoading);
-        DETOUR_DETACH(&(PVOID&)o_onSaveCreate, onSaveCreate);
-        DETOUR_DETACH(&(PVOID&)o_onSaveLoad, onSaveLoad);
-        DETOUR_DETACH(&(PVOID&)o_onKillFaction, onKillFaction);
-        DETOUR_DETACH(&(PVOID&)o_onKillUnitInArmy, onKillUnitInArmy);
-        DETOUR_DETACH(&(PVOID&)o_onKillUnit, onKillUnit);
-        DETOUR_DETACH(&(PVOID&)o_onKillCharacter, onKillCharacter);
-        DETOUR_DETACH(&(PVOID&)o_onReposition, onTeleport);
-        DETOUR_DETACH(&(PVOID&)o_onConsoleError, onConsoleError);
-        DETOUR_DETACH(&(PVOID&)o_onActionMove, onActionMove);
-        DETOUR_DETACH(&(PVOID&)o_onAttackSettlement, onAttackSettlement);
-        DETOUR_DETACH(&(PVOID&)o_onAttackPort, onAttackPort);
-        DETOUR_DETACH(&(PVOID&)o_onAttackFort, onAttackFort);
-        DETOUR_DETACH(&(PVOID&)o_onAttackArmy, onAttackArmy);
-        DETOUR_DETACH(&(PVOID&)o_onUnitLeavesArmy, onUnitLeavesArmy);
-        DETOUR_DETACH(&(PVOID&)o_onDisembark, onDisembark);
-        DETOUR_DETACH(&(PVOID&)o_onBattleStateChange, onBattleStateChange);
-        DETOUR_DETACH(&(PVOID&)o_onBattleEnd, onBattleEnd);
-        DETOUR_DETACH(&(PVOID&)o_onHistoricAndNewGameArmyLoading, onHistoricAndNewGameArmyLoading);
-        DETOUR_DETACH(&(PVOID&)o_onBeginSiege, onBeginSiege);
-        DETOUR_DETACH(&(PVOID&)o_onHistoricBattleAndNewGameLoading, onHistoricBattleAndNewGameLoading);
-        DETOUR_DETACH(&(PVOID&)o_getRegionByCoords, getRegionByCoords);
-        DETOUR_DETACH(&(PVOID&)o_onMap_rwmLoaded, onMap_rwmLoaded);
-        DETOUR_DETACH(&(PVOID&)o_onCheckUnitBattleStatus, onCheckUnitBattleStatus);
-        DETOUR_DETACH(&(PVOID&)o_onCharacterCreated, onCharacterCreated);
-        DETOUR_DETACH(&(PVOID&)o_onCharacterCreated2, onCharacterCreated2);
-        DETOUR_DETACH(&(PVOID&)o_onRebelGarrisonCreated, onRebelGarrisonCreated);
-        DETOUR_DETACH(&(PVOID&)o_onExecuteScript, onExecuteScript);
-        DETOUR_DETACH(&(PVOID&)o_onConsoleExecute, onConsoleExecute);
-        DETOUR_DETACH(&(PVOID&)o_onCreateScriptFromFile, onCreateScriptFromFile);
-        DETOUR_DETACH(&(PVOID&)o_onCreateAllScripts, onCreateAllScripts);
-        DETOUR_DETACH(&(PVOID&)o_onCreateDescrFile, onCreateDescrFile);
-        DETOUR_DETACH(&(PVOID&)o_onNewGameStart, onNewGameStart);
-        DETOUR_DETACH(&(PVOID&)o_onCampaignMapLoaded, onCampaignMapLoaded);
-        DETOUR_DETACH(&(PVOID&)o_onChangeTurnNum, onChangeTurnNum);
-        DETOUR_DETACH(&(PVOID&)o_onSetVassal, onSetVassal);
-        DETOUR_DETACH(&(PVOID&)o_onPseudoPreFactionTurnStart, onPseudoPreFactionTurnStart);
-        DETOUR_DETACH(&(PVOID&)o_onLoadEDU, onLoadEDU);
-        DETOUR_DETACH(&(PVOID&)o_onCreateCandidateMarrying, onCreateCandidateMarrying);
-        DETOUR_DETACH(&(PVOID&)o_onDaughterReadyMarryHusband, onDaughterReadyMarryHusband);
-        DETOUR_DETACH(&(PVOID&)o_onStartFamilyRound, onStartFamilyRound);
-        DETOUR_DETACH(&(PVOID&)o_onTransitionToBattleFromStratMap, onTransitionToBattleFromStratMap);
-        DETOUR_DETACH(&(PVOID&)o_onOpenFile, onOpenFile);
-        DETOUR_DETACH(&(PVOID&)o_onCreateUnit3, onCreateUnit3);
-        DETOUR_DETACH(&(PVOID&)o_onCreateUnit4, onCreateUnit4);
-        DETOUR_DETACH(&(PVOID&)o_onSetBattleUnitModels, onSetBattleUnitModels);
-        DETOUR_DETACH(&(PVOID&)o_onCreateUnit2, onCreateUnit2);
-        DETOUR_DETACH(&(PVOID&)o_onGiveUnitToArmy, onGiveUnitToArmy);
-        DETOUR_DETACH(&(PVOID&)o_onCreateUnit, onCreateUnit);
-        DETOUR_DETACH(&(PVOID&)o_onSetBodyguardUnit, onSetBodyguardUnit);
-        DETOUR_DETACH(&(PVOID&)o_onCreateArmy, onCreateArmy);
-        DETOUR_DETACH(&(PVOID&)o_onRestorePointers, onRestorePointers);
-        DETOUR_DETACH(&(PVOID&)o_onAttachRegionSettlement, onAttachRegionSettlement);
-        DETOUR_DETACH(&(PVOID&)o_onSetPreBattleWithdrawal, onSetPreBattleWithdrawal);
-        DETOUR_DETACH(&(PVOID&)o_onBattleInstigate, onBattleInstigate);
-        DETOUR_DETACH(&(PVOID&)o_onBuildingCaptured, onBuildingCaptured);
+        DETOUR_DETACH(o_onGameInit, onGameInit);
+        DETOUR_DETACH(o_onReadEDU, onReadEDU);
+        DETOUR_DETACH(o_onGetUnitFormationString, onGetUnitFormationString);
+        DETOUR_DETACH(o_onAutosave, onAutosave);
+        DETOUR_DETACH(o_onQuickLoading, onQuickLoading);
+        DETOUR_DETACH(o_onSaveCreate, onSaveCreate);
+        DETOUR_DETACH(o_onSaveLoad, onSaveLoad);
+        DETOUR_DETACH(o_onKillFaction, onKillFaction);
+        DETOUR_DETACH(o_onKillUnitInArmy, onKillUnitInArmy);
+        DETOUR_DETACH(o_onKillUnit, onKillUnit);
+        DETOUR_DETACH(o_onKillCharacter, onKillCharacter);
+        DETOUR_DETACH(o_onReposition, onTeleport);
+        DETOUR_DETACH(o_onConsoleError, onConsoleError);
+        DETOUR_DETACH(o_onActionMove, onActionMove);
+        DETOUR_DETACH(o_onAttackSettlement, onAttackSettlement);
+        DETOUR_DETACH(o_onAttackPort, onAttackPort);
+        DETOUR_DETACH(o_onAttackFort, onAttackFort);
+        DETOUR_DETACH(o_onAttackArmy, onAttackArmy);
+        DETOUR_DETACH(o_onUnitLeavesArmy, onUnitLeavesArmy);
+        DETOUR_DETACH(o_onDisembark, onDisembark);
+        DETOUR_DETACH(o_onBattleStateChange, onBattleStateChange);
+        DETOUR_DETACH(o_onBattleEnd, onBattleEnd);
+        DETOUR_DETACH(o_onHistoricAndNewGameArmyLoading, onHistoricAndNewGameArmyLoading);
+        DETOUR_DETACH(o_onBeginSiege, onBeginSiege);
+        DETOUR_DETACH(o_onHistoricBattleAndNewGameLoading, onHistoricBattleAndNewGameLoading);
+        DETOUR_DETACH(o_getRegionByCoords, getRegionByCoords);
+        DETOUR_DETACH(o_onMap_rwmLoaded, onMap_rwmLoaded);
+        DETOUR_DETACH(o_onCheckUnitBattleStatus, onCheckUnitBattleStatus);
+        DETOUR_DETACH(o_onCharacterCreated, onCharacterCreated);
+        DETOUR_DETACH(o_onCharacterCreated2, onCharacterCreated2);
+        DETOUR_DETACH(o_onRebelGarrisonCreated, onRebelGarrisonCreated);
+        DETOUR_DETACH(o_onExecuteScript, onExecuteScript);
+        DETOUR_DETACH(o_onConsoleExecute, onConsoleExecute);
+        DETOUR_DETACH(o_onCreateScriptFromFile, onCreateScriptFromFile);
+        DETOUR_DETACH(o_onCreateAllScripts, onCreateAllScripts);
+        DETOUR_DETACH(o_onCreateDescrFile, onCreateDescrFile);
+        DETOUR_DETACH(o_onNewGameStart, onNewGameStart);
+        DETOUR_DETACH(o_onCampaignMapLoaded, onCampaignMapLoaded);
+        DETOUR_DETACH(o_onChangeTurnNum, onChangeTurnNum);
+        DETOUR_DETACH(o_onSetVassal, onSetVassal);
+        DETOUR_DETACH(o_onPseudoPreFactionTurnStart, onPseudoPreFactionTurnStart);
+        DETOUR_DETACH(o_onLoadEDU, onLoadEDU);
+        DETOUR_DETACH(o_onCreateCandidateMarrying, onCreateCandidateMarrying);
+        DETOUR_DETACH(o_onDaughterReadyMarryHusband, onDaughterReadyMarryHusband);
+        DETOUR_DETACH(o_onStartFamilyRound, onStartFamilyRound);
+        DETOUR_DETACH(o_onTransitionToBattleFromStratMap, onTransitionToBattleFromStratMap);
+        DETOUR_DETACH(o_onOpenFile, onOpenFile);
+        DETOUR_DETACH(o_onCreateUnit3, onCreateUnit3);
+        DETOUR_DETACH(o_onCreateUnit4, onCreateUnit4);
+        DETOUR_DETACH(o_onSetBattleUnitModels, onSetBattleUnitModels);
+        DETOUR_DETACH(o_onCreateUnit2, onCreateUnit2);
+        DETOUR_DETACH(o_onGiveUnitToArmy, onGiveUnitToArmy);
+        DETOUR_DETACH(o_onCreateUnit, onCreateUnit);
+        DETOUR_DETACH(o_onSetBodyguardUnit, onSetBodyguardUnit);
+        DETOUR_DETACH(o_onCreateArmy, onCreateArmy);
+        DETOUR_DETACH(o_onRestorePointers, onRestorePointers);
+        DETOUR_DETACH(o_onAttachRegionSettlement, onAttachRegionSettlement);
+        DETOUR_DETACH(o_onSetPreBattleWithdrawal, onSetPreBattleWithdrawal);
+        DETOUR_DETACH(o_onBattleInstigate, onBattleInstigate);
+        DETOUR_DETACH(o_onBuildingCaptured, onBuildingCaptured);
 
 
         saveFiles.deleteAll();
@@ -363,6 +363,40 @@ namespace new_events
         return result;
     }
 
+    static void setNewUnitSizeLimit()
+    {
+        if (!unlockUnitSizelimit)
+            return;
+
+        unlockUnitSizelimit = false;
+        LOG_ALWAYS(RELEASEFULL, "unlockUnitSizelimit");
+        
+        BYTE fixMin = 0x01; // 1 in EDU, 4 in game at maximum settings   
+        const DWORD addressMin = startSettings.gameVersion == 1 ? 0x008D3E1C : 0x00918786;
+
+        memory::Write(&fixMin, addressMin, 1);
+        
+        BYTE fixMax = 0x78; // 120 in EDU, 480 in game at maximum settings   
+        const DWORD addressMax = startSettings.gameVersion == 1 ? 0x008D3E25 : 0x00918798;
+        memory::Write(&fixMax, addressMax, 1);
+
+        // total limit 
+        BYTE fixTot = 0xE0; // 480 in game at maximum settings   
+        const DWORD addressTot1 = startSettings.gameVersion == 1 ? 0x0044CA66 : 0x0044920F;
+        const DWORD addressTot2 = startSettings.gameVersion == 1 ? 0x0044CA7C : 0x009186D9;
+        const DWORD addressTot3 = startSettings.gameVersion == 1 ? 0x008D3E4B : 0x00918856;
+        memory::Write(&fixTot, addressTot1, 1);
+        memory::Write(&fixTot, addressTot2, 1);
+        memory::Write(&fixTot, addressTot3, 1);
+
+        // Recruitment in the settlement 
+        const DWORD addressRecr1 = startSettings.gameVersion == 1 ? 0x008DD733 : 0x009207E8;
+        const DWORD addressRecr2 = startSettings.gameVersion == 1 ? 0x008DD73D : 0x009207F1;
+        memory::Write(&fixTot, addressRecr1, 1);
+        memory::Write(&fixTot, addressRecr2, 1);
+    }
+
+
     bool __fastcall onReadEDU(eduEntry* _this, int stub, descrFile* file)
     {
         while (testEDU && !IsDebuggerPresent())
@@ -370,30 +404,7 @@ namespace new_events
             Sleep(100);
         }
 
-        if (unlockUnitSizelimit && startSettings.gameVersion != 2)
-        {
-            unlockUnitSizelimit = false;
-            LOG_ALWAYS(RELEASEFULL, "unlockUnitSizelimit");
- 
-            BYTE fixMin = 0x01; // 1 in EDU, 4 in game at maximum settings   
-            const DWORD addressMin = 0x008D3E1C;
-            memory::Write(&fixMin, addressMin, 1);
-
-            BYTE fixMax = 0x78; // 120 in EDU, 480 in game at maximum settings   
-            const DWORD addressMax = 0x008D3E25;
-            memory::Write(&fixMax, addressMax, 1);
-
-
-            // total limit 
-            BYTE fixTot = 0xE0; // 480 in game at maximum settings   
-            const DWORD addressTot1 = 0x0044CA66;
-            const DWORD addressTot2 = 0x0044CA7C;
-            const DWORD addressTot3 = 0x008D3E4B;
-            memory::Write(&fixTot, addressTot1, 1);
-            memory::Write(&fixTot, addressTot2, 1);
-            memory::Write(&fixTot, addressTot3, 1);
-        }
-
+        setNewUnitSizeLimit();
         bool result = o_onReadEDU(_this, stub, file);
 
         eduFormation.type[_this->Index] = eduFormation.buffer;
@@ -1168,18 +1179,25 @@ namespace new_events
 
     void setAncLimit(uint8_t limit)
     {
-        if (startSettings.gameVersion == 2)
-            return;
 
         LOG_ALWAYS(RELEASE, "setAncLimit(" + to_string(limit) + ")");
 
-        const DWORD ancillaries1 = 0x005A6EA1;
-        const DWORD ancillaries2 = 0x005A71B9;
-        const DWORD ancillaries3 = 0x005A74DF;
+        if (startSettings.gameVersion == 1)
+        {
+            const DWORD ancillaries1 = 0x005A6EA1;
+            const DWORD ancillaries2 = 0x005A71B9;
+            const DWORD ancillaries3 = 0x005A74DF;
 
-        memory::Write(&limit, ancillaries1, 1);
-        memory::Write(&limit, ancillaries2, 1);
-        memory::Write(&limit, ancillaries3, 1);
+            memory::Write(&limit, ancillaries1, 1);
+            memory::Write(&limit, ancillaries2, 1);
+            memory::Write(&limit, ancillaries3, 1);
+        }
+        else
+        {
+            const DWORD ancillaries = 0x00592737;
+
+            memory::Write(&limit, ancillaries, 1);
+        }
     }
 
     void callSaveLoad(UNICODE_STRING**& savePath)

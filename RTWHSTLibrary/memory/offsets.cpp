@@ -338,7 +338,7 @@ void gameOffsets::init(int gameVer)
 		onAttackArmy                                        = 0x007297c1;
 		onUnitLeavesArmy                                    = 0x004CA459;
 		onDisembark                                         = 0x00586587;
-		onBattleStateChange                                 = NULL;
+		onBattleStateChange                                 = 0x00600c6e;
 		onBattleEnd                                         = 0x005ffb68;
 		onHistoricAndNewGameArmyLoading                     = 0x00448cbc;
 		onBeginSiege                                        = 0x00583cdb;
@@ -366,14 +366,14 @@ void gameOffsets::init(int gameVer)
 		onDaughterReadyMarryHusband                         = 0x00cbbeef;
 		onStartFamilyRound                                  = 0x004d5b96;
 		onOpenFile                                          = 0x0040ea10;
-		onCreateUnit3                                       = NULL;
+		onCreateUnit3                                       = 0x0092033a;
 		onCreateUnit4                                       = 0x00920484;
 		onSetBattleUnitModels                               = 0x009200b2;
-		onCreateUnit2                                       = NULL;
+		onCreateUnit2                                       = 0x009208e4;//0092076a
 		onGiveUnitToArmy                                    = 0x00722792;
 		onCreateUnit                                        = NULL;
-		onSetBodyguardUnit                                  = NULL;
-		onCreateArmy                                        = NULL;
+		onSetBodyguardUnit                                  = 0x00722c03;
+		onCreateArmy                                        = 0x004cc5dc;
 		onRestorePointers                                   = 0x005b440f;
 		getLocalizedName                                    = 0x004c7032;
 		getLocalFaction                                     = 0x00b53e1f;
@@ -589,7 +589,7 @@ void gameOffsets::init(int gameVer)
 		addFactionSettlementsForRender                      = NULL;
 		getPlayerObjectSeen                                 = NULL;
 		FUN_008bb25c                                        = NULL;
-		getRandomNameIndices                                = 0x00905062;//???   
+		getRandomNameIndices                                = 0x00905062; 
 		getRandomName                                       = 0x00904f3a;
 		characterConstructor                                = NULL;
 		FUN_00890730                                        = NULL;

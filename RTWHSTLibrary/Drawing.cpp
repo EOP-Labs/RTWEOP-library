@@ -12,7 +12,6 @@ BOOL   Drawing::bInit       = FALSE;    // Status of the initialization of ImGui
 bool   Drawing::bDisplay    = true;     // Status of the menu display.
 ImVec2 Drawing::vWindowPos  = { 0, 0 }; // Last ImGui window position.
 ImVec2 Drawing::vWindowSize = { 0, 0 }; // Last ImGui window size.
-bool   Drawing::isStartDraw = false;
 
 Drawing::t_onDrawGameCursorOnStratAndTacticMap Drawing::o_onDrawGameCursorOnStratAndTacticMap = nullptr;
 Drawing::t_onGameDrawOnMainMenu                Drawing::o_onGameDrawOnMainMenu                = nullptr;
@@ -23,29 +22,33 @@ Drawing::t_onGameDrawOnMainMenuNew             Drawing::o_onGameDrawOnMainMenuNe
 
 void Drawing::hook()
 {
+	LOG_ALWAYS(RELEASE, "Drawing::hook()");
+
 	o_onDrawGameCursorOnStratAndTacticMap = (t_onDrawGameCursorOnStratAndTacticMap)offsets.onDrawGameCursorOnStratAndTacticMap;
-	DETOUR_ATTACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, onDrawGameCursorOnStratAndTacticMap);
+	DETOUR_ATTACH(o_onDrawGameCursorOnStratAndTacticMap, onDrawGameCursorOnStratAndTacticMap);
 
 	o_onGameDrawOnStratAndTacticMap = (t_onGameDrawOnStratAndTacticMap)offsets.onGameDrawOnStratAndTacticMap;
-	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
+	DETOUR_ATTACH(o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
 
 	o_onGameDrawOnMainMenuNew = (t_onGameDrawOnMainMenuNew)offsets.onGameDrawOnMainMenuNew;
-	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnMainMenuNew, onGameDrawOnMainMenuNew);
+	DETOUR_ATTACH(o_onGameDrawOnMainMenuNew, onGameDrawOnMainMenuNew);
 
-	o_onGameDrawOnMainMenu = (t_onGameDrawOnMainMenu)offsets.onGameDrawOnMainMenu;
-	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnMainMenu, onGameDrawOnMainMenu);
+//	o_onGameDrawOnMainMenu = (t_onGameDrawOnMainMenu)offsets.onGameDrawOnMainMenu;
+//	DETOUR_ATTACH(o_onGameDrawOnMainMenu, onGameDrawOnMainMenu);
 
-	o_onGameDrawOnLoadingScreen = (t_onGameDrawOnLoadingScreen)offsets.onGameDrawOnLoadingScreen;
-	DETOUR_ATTACH(&(PVOID&)o_onGameDrawOnLoadingScreen, onGameDrawOnLoadingScreen);
+//	o_onGameDrawOnLoadingScreen = (t_onGameDrawOnLoadingScreen)offsets.onGameDrawOnLoadingScreen;
+//	DETOUR_ATTACH(o_onGameDrawOnLoadingScreen, onGameDrawOnLoadingScreen);
 }
 
 void Drawing::unHook()
 {
-	DETOUR_DETACH(&(PVOID&)o_onDrawGameCursorOnStratAndTacticMap, onDrawGameCursorOnStratAndTacticMap);
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnMainMenuNew, onGameDrawOnMainMenuNew);
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnMainMenu, onGameDrawOnMainMenu);
-	DETOUR_DETACH(&(PVOID&)o_onGameDrawOnLoadingScreen, onGameDrawOnLoadingScreen);
+	LOG_ALWAYS(RELEASE, "Drawing::unHook()");
+
+	DETOUR_DETACH(o_onDrawGameCursorOnStratAndTacticMap, onDrawGameCursorOnStratAndTacticMap);
+	DETOUR_DETACH(o_onGameDrawOnStratAndTacticMap, onGameDrawOnStratAndTacticMap);
+	DETOUR_DETACH(o_onGameDrawOnMainMenuNew, onGameDrawOnMainMenuNew);
+//	DETOUR_DETACH(o_onGameDrawOnMainMenu, onGameDrawOnMainMenu);
+//	DETOUR_DETACH(o_onGameDrawOnLoadingScreen, onGameDrawOnLoadingScreen);
 }
 
 HRESULT Drawing::hkBeginScene(const LPDIRECT3DDEVICE9 D3D9Device)
@@ -71,9 +74,7 @@ void __fastcall Drawing::onDrawGameCursorOnStratAndTacticMap(int param_1)
 {
 //	Hook::o_onDrawGameCursorOnStratAndTacticMap(param_1);
 //	if (offsets.stratMapCursor == param_1 + 0x90)
-
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = true;
-	draw();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -81,7 +82,6 @@ void __fastcall Drawing::onDrawGameCursorOnStratAndTacticMap(int param_1)
 int __fastcall Drawing::onGameDrawOnMainMenu(void* _this, int stub, char** name, undefined4 param_3, float* param_4)
 {
 	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnMainMenu");
-	isStartDraw = true;
 
 	int result = o_onGameDrawOnMainMenu(_this, stub, name, param_3, param_4);
 
@@ -96,7 +96,6 @@ int __fastcall Drawing::onGameDrawOnMainMenu(void* _this, int stub, char** name,
 void __fastcall Drawing::onGameDrawOnLoadingScreen(void* _this, int* param_1, int param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)
 {
 	o_onGameDrawOnLoadingScreen(_this, param_1, param_2, param_3, param_4, param_5);
-
 	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = false;
 	draw();
 }
@@ -104,12 +103,7 @@ void __fastcall Drawing::onGameDrawOnLoadingScreen(void* _this, int* param_1, in
 // render на страт карте и тактике   
 void __cdecl Drawing::onGameDrawOnStratAndTacticMap(int param_1)
 {
-	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnStratAndTacticMap");
-
-	if (!isStartDraw)
-	{
-		return o_onGameDrawOnStratAndTacticMap(param_1);
-	}
+//	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnStratAndTacticMap");
 
 	if (HOT_SEAT_CAMPAIGN.m_is_strat_map_draw &&
 		GAME_FUNC(bool(__cdecl*)(), offsets.begin_scene_UI)()) {
@@ -124,8 +118,9 @@ void __cdecl Drawing::onGameDrawOnStratAndTacticMap(int param_1)
 // render в главном меню - новый   
 void __fastcall Drawing::onGameDrawOnMainMenuNew(int param_1)
 {
-	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnMainMenuNew");
+//	LOG_ALWAYS(BUGTEST, "Drawing::onGameDrawOnMainMenuNew");
 	o_onGameDrawOnMainMenuNew(param_1);
+	HOT_SEAT_CAMPAIGN.m_is_strat_map_draw = false;
 	draw();
 }
 

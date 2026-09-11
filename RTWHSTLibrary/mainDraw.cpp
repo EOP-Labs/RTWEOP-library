@@ -1230,7 +1230,7 @@ bool __fastcall FUN_00a326e0(int param_1)
 stratMapCursor* gameCursor = NULL;
 void new_events::testGameEvents()
 {
-    LOG_ALWAYS(RELEASE, "testGameEvents()");
+    LOG_ALWAYS(RELEASE, "new_events::testGameEvents()");
 
 #ifdef _DEBUG
     LOG_REMINDER("!!! eduFormation для стим версии!!!");
@@ -1250,152 +1250,152 @@ void new_events::testGameEvents()
 
 #ifdef OTHER_TESTS
 //	o_game_begin_scene = (t_game_begin_scene)offsets.game_begin_scene;
-//	DETOUR_ATTACH(&(PVOID&)o_game_begin_scene, game_begin_scene);
+//	DETOUR_ATTACH(o_game_begin_scene, game_begin_scene);
 
 //	o_game_end_scene = (t_game_end_scene)offsets.game_end_scene;
-//	DETOUR_ATTACH(&(PVOID&)o_game_end_scene, game_end_scene);
+//	DETOUR_ATTACH(o_game_end_scene, game_end_scene);
 
 	o_onCreateUniString = (t_onCreateUniString)offsets.onCreateUniString;
-	DETOUR_ATTACH(&(PVOID&)o_onCreateUniString, onCreateUniString);
+	DETOUR_ATTACH(o_onCreateUniString, onCreateUniString);
 
 	o_onCreateUniStringFromSharedTxtFile = (t_onCreateUniStringFromSharedTxtFile)offsets.onCreateUniStringFromSharedTxtFile;
-	DETOUR_ATTACH(&(PVOID&)o_onCreateUniStringFromSharedTxtFile, onCreateUniStringFromSharedTxtFile);
+	DETOUR_ATTACH(o_onCreateUniStringFromSharedTxtFile, onCreateUniStringFromSharedTxtFile);
 
 	o_onPreBattleEnd = (t_onPreBattleEnd)offsets.onPreBattleEnd;
-	DETOUR_ATTACH(&(PVOID&)o_onPreBattleEnd, onPreBattleEnd);
+	DETOUR_ATTACH(o_onPreBattleEnd, onPreBattleEnd);
 
 	o_onMoveToTile = (t_onMoveToTile)offsets.onMoveToTile;
-	DETOUR_ATTACH(&(PVOID&)o_onMoveToTile, onMoveToTile);
+	DETOUR_ATTACH(o_onMoveToTile, onMoveToTile);
 
 	o_onMoveToTile_2 = (t_onMoveToTile_2)offsets.onMoveToTile_2;
-	DETOUR_ATTACH(&(PVOID&)o_onMoveToTile_2, onMoveToTile_2);
+	DETOUR_ATTACH(o_onMoveToTile_2, onMoveToTile_2);
 
 	o_onMoveToTile_3 = (t_onMoveToTile_3)offsets.onMoveToTile_3;
-	DETOUR_ATTACH(&(PVOID&)o_onMoveToTile_3, onMoveToTile_3);
+	DETOUR_ATTACH(o_onMoveToTile_3, onMoveToTile_3);
 
 	o_classCreatorNEW = (t_classCreatorNEW)offsets.classCreatorNEW;
-	DETOUR_ATTACH(&(PVOID&)o_classCreatorNEW, classCreatorNEW);
+	DETOUR_ATTACH(o_classCreatorNEW, classCreatorNEW);
 
     o_onSetPopulation = (t_onSetPopulation)offsets.setPopulation;
-    DETOUR_ATTACH(&(PVOID&)o_onSetPopulation, onSetPopulation);
+    DETOUR_ATTACH(o_onSetPopulation, onSetPopulation);
 
 	o_onUnitRender = (t_onUnitRender)offsets.onUnitRender;
-	DETOUR_ATTACH(&(PVOID&)o_onUnitRender, onUnitRender);
+	DETOUR_ATTACH(o_onUnitRender, onUnitRender);
 
 	o_onMarriageOptionAccept = (t_onMarriageOptionAccept)offsets.onMarriageOptionAccept;
-	DETOUR_ATTACH(&(PVOID&)o_onMarriageOptionAccept, onMarriageOptionAccept);
+	DETOUR_ATTACH(o_onMarriageOptionAccept, onMarriageOptionAccept);
 
 	o_onEventTrigger = (t_onEventTrigger)offsets.onEventTrigger;
-	DETOUR_ATTACH(&(PVOID&)o_onEventTrigger, onEventTrigger);
+	DETOUR_ATTACH(o_onEventTrigger, onEventTrigger);
 #endif // OTHER_TESTS
 
 
 #ifdef FACTION_LIMIT_TESTS
     o_createFaction = (t_createFaction)offsets.createFaction;
-	DETOUR_ATTACH(&(PVOID&)o_createFaction, createFaction);
+	DETOUR_ATTACH(o_createFaction, createFaction);
   
   	o_onReadDescrSmFactions = (t_onReadDescrSmFactions)offsets.onReadDescrSmFactions;
-	DETOUR_ATTACH(&(PVOID&)o_onReadDescrSmFactions, onReadDescrSmFactions);
+	DETOUR_ATTACH(o_onReadDescrSmFactions, onReadDescrSmFactions);
   
    	o_onGetUniStringFromData = (t_onGetUniStringFromData)offsets.onGetUniStringFromData;
-	DETOUR_ATTACH(&(PVOID&)o_onGetUniStringFromData, onGetUniStringFromData);
+	DETOUR_ATTACH(o_onGetUniStringFromData, onGetUniStringFromData);
   
 //  o_FUN_00ece3c0 = (t_FUN_00ece3c0)offsets.FUN_00ece3c0;
-//	DETOUR_ATTACH(&(PVOID&)o_FUN_00ece3c0, FUN_00ece3c0);
+//	DETOUR_ATTACH(o_FUN_00ece3c0, FUN_00ece3c0);
   
     o_onAttachRegion = (t_onAttachRegion)offsets.onAttachRegion;
-	DETOUR_ATTACH(&(PVOID&)o_onAttachRegion, onAttachRegion);
+	DETOUR_ATTACH(o_onAttachRegion, onAttachRegion);
   
     o_onAttachRegionFaction = (t_onAttachRegionFaction)offsets.onAttachRegionFaction;
-	DETOUR_ATTACH(&(PVOID&)o_onAttachRegionFaction, onAttachRegionFaction);
+	DETOUR_ATTACH(o_onAttachRegionFaction, onAttachRegionFaction);
   
     o_onGetInstance = (t_onGetInstance)offsets.onGetInstance;
-	DETOUR_ATTACH(&(PVOID&)o_onGetInstance, onGetInstance);
+	DETOUR_ATTACH(o_onGetInstance, onGetInstance);
   
     o_onGetFactionByID = (t_onGetFactionByID)offsets.onGetFactionByID;
-	DETOUR_ATTACH(&(PVOID&)o_onGetFactionByID, onGetFactionByID);
+	DETOUR_ATTACH(o_onGetFactionByID, onGetFactionByID);
   
     o_onHasTradeRights = (t_onHasTradeRights)offsets.onHasTradeRights;
-	DETOUR_ATTACH(&(PVOID&)o_onHasTradeRights, onHasTradeRights);
+	DETOUR_ATTACH(o_onHasTradeRights, onHasTradeRights);
   
     o_onCampaignMapSaved = (t_onCampaignMapSaved)offsets.onCampaignMapSaved;
-	DETOUR_ATTACH(&(PVOID&)o_onCampaignMapSaved, onCampaignMapSaved);
+	DETOUR_ATTACH(o_onCampaignMapSaved, onCampaignMapSaved);
   
     o_onSaveFaction = (t_onSaveFaction)offsets.onSaveFaction;
-	DETOUR_ATTACH(&(PVOID&)o_onSaveFaction, onSaveFaction);
+	DETOUR_ATTACH(o_onSaveFaction, onSaveFaction);
   
     o_onLoadFaction = (t_onLoadFaction)offsets.onLoadFaction;
-	DETOUR_ATTACH(&(PVOID&)o_onLoadFaction, onLoadFaction);
+	DETOUR_ATTACH(o_onLoadFaction, onLoadFaction);
   
 //  o_FUN_00591bf8 = (t_FUN_00591bf8)offsets.FUN_00591bf8;
-//	DETOUR_ATTACH(&(PVOID&)o_FUN_00591bf8, FUN_00591bf8);
+//	DETOUR_ATTACH(o_FUN_00591bf8, FUN_00591bf8);
   
     o_FUN_00cc7b78 = (t_FUN_00cc7b78)offsets.FUN_00cc7b78;
-	DETOUR_ATTACH(&(PVOID&)o_FUN_00cc7b78, FUN_00cc7b78);
+	DETOUR_ATTACH(o_FUN_00cc7b78, FUN_00cc7b78);
   
     o_FUN_00c488c8 = (t_FUN_00c488c8)offsets.FUN_00c488c8;
-	DETOUR_ATTACH(&(PVOID&)o_FUN_00c488c8, FUN_00c488c8);
+	DETOUR_ATTACH(o_FUN_00c488c8, FUN_00c488c8);
   
  	o_getFactionDescription = (t_getFactionDescription)offsets.getFactionDescription;
-	DETOUR_ATTACH(&(PVOID&)o_getFactionDescription, getFactionDescription);
+	DETOUR_ATTACH(o_getFactionDescription, getFactionDescription);
   
    	o_getLocalizedName = (t_getLocalizedName)offsets.onGetLocalizedName;
-   	DETOUR_ATTACH(&(PVOID&)o_getLocalizedName, onGetLocalizedName);
+   	DETOUR_ATTACH(o_getLocalizedName, onGetLocalizedName);
 
     o_onCreateArmyInSettlement = (t_onCreateArmyInSettlement)offsets.onCreateArmyInSettlement;
-    DETOUR_ATTACH(&(PVOID&)o_onCreateArmyInSettlement, onCreateArmyInSettlement);
+    DETOUR_ATTACH(o_onCreateArmyInSettlement, onCreateArmyInSettlement);
 
     o_addFactionSettlementsForRender = (t_addFactionSettlementsForRender)offsets.addFactionSettlementsForRender;
-    DETOUR_ATTACH(&(PVOID&)o_addFactionSettlementsForRender, addFactionSettlementsForRender);
+    DETOUR_ATTACH(o_addFactionSettlementsForRender, addFactionSettlementsForRender);
 
     o_getPlayerObjectSeen = (t_getPlayerObjectSeen)offsets.getPlayerObjectSeen;
-    DETOUR_ATTACH(&(PVOID&)o_getPlayerObjectSeen, getPlayerObjectSeen);
+    DETOUR_ATTACH(o_getPlayerObjectSeen, getPlayerObjectSeen);
 
 //  o_FUN_008bb25c = (t_FUN_008bb25c)offsets.FUN_008bb25c;
-//  DETOUR_ATTACH(&(PVOID&)o_FUN_008bb25c, FUN_008bb25c);
+//  DETOUR_ATTACH(o_FUN_008bb25c, FUN_008bb25c);
 
     o_getRandomNameIndices = (t_getRandomNameIndices)offsets.getRandomNameIndices;
-    DETOUR_ATTACH(&(PVOID&)o_getRandomNameIndices, getRandomNameIndices);
+    DETOUR_ATTACH(o_getRandomNameIndices, getRandomNameIndices);
 
     o_getRandomName = (t_getRandomName)offsets.getRandomName;
-    DETOUR_ATTACH(&(PVOID&)o_getRandomName, getRandomName);
+    DETOUR_ATTACH(o_getRandomName, getRandomName);
 
 	o_characterConstructor = (t_characterConstructor)offsets.characterConstructor;
-	DETOUR_ATTACH(&(PVOID&)o_characterConstructor, characterConstructor);
+	DETOUR_ATTACH(o_characterConstructor, characterConstructor);
 
 //	o_FUN_00890730 = (t_FUN_00890730)offsets.FUN_00890730;
-//	DETOUR_ATTACH(&(PVOID&)o_FUN_00890730, FUN_00890730);
+//	DETOUR_ATTACH(o_FUN_00890730, FUN_00890730);
 
 	o_getCharacterFactionID = (t_getCharacterFactionID)offsets.getCharacterFactionID;
-	DETOUR_ATTACH(&(PVOID&)o_getCharacterFactionID, getCharacterFactionID);
+	DETOUR_ATTACH(o_getCharacterFactionID, getCharacterFactionID);
 
 //	o_FUN_004a6330 = (t_FUN_004a6330)offsets.FUN_004a6330;
-//	DETOUR_ATTACH(&(PVOID&)o_FUN_004a6330, FUN_004a6330);
+//	DETOUR_ATTACH(o_FUN_004a6330, FUN_004a6330);
 
 //  o_onReadDescrRegions = (t_onReadDescrRegions)offsets.onReadDescrRegions;
-//  DETOUR_ATTACH(&(PVOID&)o_onReadDescrRegions, onReadDescrRegions);
+//  DETOUR_ATTACH(o_onReadDescrRegions, onReadDescrRegions);
 #endif // FACTION_LIMIT_TESTS
 
 
 #ifdef FACTION_BUTTON_TEST
     o_onSetFactionButton = (t_onSetFactionButton)offsets.onSetFactionButton;
-    DETOUR_ATTACH(&(PVOID&)o_onSetFactionButton, onSetFactionButton);
+    DETOUR_ATTACH(o_onSetFactionButton, onSetFactionButton);
 
 	o_onFactionStartTurnNotify = (t_onFactionStartTurnNotify)offsets.onFactionStartTurnNotify;
-	DETOUR_ATTACH(&(PVOID&)o_onFactionStartTurnNotify, onFactionStartTurnNotify);
+	DETOUR_ATTACH(o_onFactionStartTurnNotify, onFactionStartTurnNotify);
 
     o_FUN_00c48a18 = (t_FUN_00c48a18)offsets.FUN_00c48a18;
-    DETOUR_ATTACH(&(PVOID&)o_FUN_00c48a18, FUN_00c48a18);
+    DETOUR_ATTACH(o_FUN_00c48a18, FUN_00c48a18);
 
     o_FUN_00868790 = (t_FUN_00868790)offsets.FUN_00868790;
-    DETOUR_ATTACH(&(PVOID&)o_FUN_00868790, FUN_00868790);
+    DETOUR_ATTACH(o_FUN_00868790, FUN_00868790);
 #endif // FACTION_BUTTON_TEST
 
     
 
     //ФИКС ДЛЯ ХОТ-СИТ КАМПАНИИ - непонятный вылет при выгрузке карты кампании.   
     o_FUN_004a9634 = (t_FUN_004a9634)offsets.FUN_004a9634;
-	DETOUR_ATTACH(&(PVOID&)o_FUN_004a9634, FUN_004a9634);
+	DETOUR_ATTACH(o_FUN_004a9634, FUN_004a9634);
 }
 
 

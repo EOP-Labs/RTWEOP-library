@@ -139,6 +139,8 @@ BOOL APIENTRY hkSetCursorPos(int X, int Y)
 **/
 void Hook::HookDirectX()
 {
+	LOG_ALWAYS(RELEASE, "Hook::HookDirectX()");
+
 	if (GetD3D9Device(d3d9Device, sizeof(d3d9Device)))
 	{
 		DetourTransactionBegin();
@@ -150,17 +152,17 @@ void Hook::HookDirectX()
 		oReset = (tReset)d3d9Device[16];
 		oPresent = (tPresent)d3d9Device[17];
 
-		DETOUR_ATTACH(&(PVOID&)oBeginScene, Drawing::hkBeginScene);
-		DETOUR_ATTACH(&(PVOID&)oEndScene, Drawing::hkEndScene);
-		DETOUR_ATTACH(&(PVOID&)oReset, hkReset);
-		DETOUR_ATTACH(&(PVOID&)oPresent, Drawing::hkPresent);
+	//	DETOUR_ATTACH(oBeginScene, Drawing::hkBeginScene);
+	//	DETOUR_ATTACH(oEndScene, Drawing::hkEndScene);
+		DETOUR_ATTACH(oReset, hkReset);
+		DETOUR_ATTACH(oPresent, Drawing::hkPresent);
 
 		HMODULE USER32 = GetModuleHandleA("USER32.dll");
 		pSetCursorPos = (oSetCursorPos)GetProcAddress(USER32, "SetCursorPos");
-		DETOUR_ATTACH(&(LPVOID&)pSetCursorPos, hkSetCursorPos);
+		DETOUR_ATTACH(pSetCursorPos, hkSetCursorPos);
 
 	//	drawGameCursor = (tdrawGameCursor)0x00CD76C8; // draw cursor on strat map!!! 
-	//	DETOUR_ATTACH(&(PVOID&)drawGameCursor, Drawing::onDrawGameCursor);
+	//	DETOUR_ATTACH(drawGameCursor, Drawing::onDrawGameCursor);
 
 		Drawing::hook();
 		new_events::initNewEvents();
@@ -177,6 +179,8 @@ void Hook::HookDirectX()
 **/
 void Hook::UnHookDirectX()
 {
+	LOG_ALWAYS(RELEASE, "Hook::UnHookDirectX()");
+
 	if (Drawing::bInit)
 	{
 		UnHookWindow();
@@ -191,13 +195,13 @@ void Hook::UnHookDirectX()
 	DetourUpdateThread(GetCurrentThread());
 
 
-	DETOUR_DETACH(&(PVOID&)oBeginScene, Drawing::hkBeginScene);
-	DETOUR_DETACH(&(PVOID&)oEndScene, Drawing::hkEndScene);
-	DETOUR_DETACH(&(PVOID&)oReset, hkReset);
-	DETOUR_DETACH(&(PVOID&)oPresent, Drawing::hkPresent);
+//	DETOUR_DETACH(oBeginScene, Drawing::hkBeginScene);
+//	DETOUR_DETACH(oEndScene, Drawing::hkEndScene);
+	DETOUR_DETACH(oReset, hkReset);
+	DETOUR_DETACH(oPresent, Drawing::hkPresent);
 
-	DETOUR_DETACH(&(PVOID&)pSetCursorPos, hkSetCursorPos);
-//	DETOUR_DETACH(&(PVOID&)drawGameCursor, Drawing::onDrawGameCursor);
+	DETOUR_DETACH(pSetCursorPos, hkSetCursorPos);
+//	DETOUR_DETACH(drawGameCursor, Drawing::onDrawGameCursor);
 
 	Drawing::unHook();
 	new_events::deInitNewEvents();
